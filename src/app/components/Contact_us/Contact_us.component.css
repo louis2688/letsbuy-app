@@ -1,0 +1,124 @@
+﻿.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #f5f5f6;
+    background-size: cover;
+    z-index: -1;
+}
+
+.main_container {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+.header {
+    padding:5%;
+}.title {
+    
+    font-size: 5vmin;
+    font-size: var(--main_font_size-);
+}
+
+.subTitle {
+    text-align: center;
+    font-size: var(--second_font_size-);
+    color: lightgray;
+}
+
+Menu {
+    position: absolute;
+    top: 3vmin;
+    left: 4%;
+    margin: 0;
+    padding: 0;
+}
+.logo {
+    width: 20%;
+    margin:auto;
+}
+.content{
+    width:92%;
+    margin:2% auto;
+    background-color:white;
+    border-radius:20px;
+    padding:4%;
+
+}
+.alternative_container {
+    text-align: center;
+    width:100%;
+}
+.txt {
+    text-align: center;
+    color: black;
+    margin: 3% 0;
+    font-size:var(--second_font_size-);
+}
+.alternative_container > .btn {
+    background: var(--BG1_blue-);
+    margin: 2% 5%;
+    float:left;
+    width: 40%;
+    padding: 3vmin 0;
+    color: white;
+    text-align: center;
+    border-radius: 50px;
+}
+.next_step {
+    background:var(--BG2_purple-);
+    margin: 3% auto;
+    margin-bottom: 0;
+    width: 45%;
+    padding: 4vmin 0;
+    color: white;
+    text-align: center;
+    border-radius: 50px;
+}
+
+.next_step.disabled {
+    background: linear-gradient(to bottom, #979393, #413d3d);
+}
+.clear{
+    clear:both;
+    content:"";
+}
+textarea, .name_mail>input {
+    resize: none;
+    background-color: lightgray;
+    border: 0;
+    border-radius: 10px;
+    margin: 2% auto;
+    width: 92%;
+    padding: 10px;
+    overflow-y: scroll;
+}
+.name_mail > input {
+    padding: 5px 10px;
+}
+.success{
+    color:lightgreen;
+} 
+.error{
+    color:red;
+}
+.text_container {
+    text-align:left;
+}
+
+@media (min-width: 1000px) {
+    .background {
+            max-width: 600px;
+            margin: auto;
+        }
+    .next_step {
+        width: 50%;
+        padding: 2% 0;
+        font-size: 3vmin;
+    }
+    .alternative_container> .btn{
+        padding: 2vmin 0;
+    }
+}

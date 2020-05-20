@@ -1,0 +1,122 @@
+import { Component,Output,Input,EventEmitter, AfterContentInit } from '@angular/core';
+import { SelectableCategory } from "../../entities/category";
+import { LanguageService, ResourcesService, UserProfileService } from "../../serivces/index";
+
+@Component({
+    selector: 'EditSpecialistCategories',
+    templateUrl: './EditSpecialistCategories.component.html',
+    styleUrls: ['./EditSpecialistCategories.component.css'],
+    providers: [ResourcesService, UserProfileService]
+})
+export class EditSpecialistCategoriesComponent implements AfterContentInit {
+    public selectedSubCategories: SelectableCategory[] = [];
+
+    public __select_all: string;
+    public __EditSpecialistCategories_title: string;
+    public __update_btn: string;
+
+
+<<<<<<< HEAD
+    @Output() exit = new EventEmitter<SelectableCategory[]>();
+    @Input() user_categories: SelectableCategory[];
+=======
+    @Output() exit = new EventEmitter<Category[]>();
+>>>>>>> aa044c9bf864a63d96e2fc9d38046afac4e64986
+
+    constructor(private resService: ResourcesService, private userService: UserProfileService ) {
+        this.InitText();
+    }
+
+    ngAfterContentInit(): void {
+        var allCat = this.resService.GetCategories();
+        var userCat = this.user_categories;
+        var Items: SelectableCategory[] = [];
+        allCat.forEach(function (obj, index) {
+            if (userCat) {
+                var isExist = userCat.find(x => x.id == obj.id || x.ID == obj.id);
+                if (isExist != null) {
+                    obj.chacked = true;
+                }
+            }
+            obj.sub_categories.forEach(function (obj, index) {
+                if (userCat) {
+                    var isExist = userCat.find(x => x.id == obj.id || x.ID == obj.id);
+                    if (isExist != null) {
+                        obj.chacked = true;
+                    }
+                }
+            })
+            Items.push(obj);
+        })
+        this.selectedSubCategories = Items;
+
+    }
+
+    click(i: SelectableCategory) {
+        i.isOpen = !i.isOpen;
+    }  
+
+    public getSrcByState(i: SelectableCategory) {
+        if (i.isOpen) {
+            return "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEUAAABECAYAAADX0fiMAAAEo0lEQVR4nO2cv4/bNhSAP/o8Fo0CdEsL6DYPl1bt1i7RoXMRd8oYHzoXcf6CIB26FbnuDeIW3XOZO5wDtEARIDlfLkgDZLBRIFuBKkCXLnEHkpask2xJpCzK6Qc86IdF8vGJeiIfKQt+e8yGCIAQ+Ajw1bG34voImAAz4BQYq2OrzD/75Ny5ru1CEnhAH7iKNMYqA+SlD1PnIqRxHgBH6tg6nRry9IF7wFRt+5Q3SB7a0Mn8fUt5L+ggwJKECI4RTBEMEHgW884ST5UzVeWGlfLJNIo5PvKOHXO+uW+KUJVvpeV0EAIDGSLECUIMDPOxJQOlz7BwmkyjVMMD7gN3sOcvbOEh9Tqmom5VjBIAJ0iH5zIhUs+gbMKyjravnJpfsxO1Jb7St1/O0RYvYIDg/gbeKrbFU3oPihqlm/vLMgOkZ28zWv/Rugu7BWwS0H6DaO4hhworhwvrHK2P9OLbxDGyXrl0897VxK9d1165puh6fZx3wSpHewtB4ICjrEMCBHfyXEeeUUIEQweUr1OGiOxhSZ5P2RbHuo7MemaNfYYI4TswjtmE+OLk6TBtFMHJafLYQ8Ypts25riICdufBh4uAVdqnDGhfj9VUZFwmQSd1xY2mNWxIbiwbJf6tT3sGerbFF0/PFqP+pFGuO6Bck3JdG0VwdgbSsf7N/1yc7+1FuqWEDtwpFySE+PG54oBCLsgViOMpIe3lF7VN9s4/r5hXCHE8pXQcs2YeJPY7wI7a/1VtXwPPEvun6ro3wCHVjRKADB2EFTMow89qu8PyHX2lBOA5soIAZ8A/Jct4o7Y/Ieerw9JaAuLF87CLsNal14OrR8QV/13tvwZeWipnHU8M03tdhPGjcxd5t78F/jXMyxZ/GqQNVkXeivIKuGWaiWVmJolN55LvIlvIVlEkmr8OVx6ZJBdNEps+Po9MEtfIZZPENlqKa/imGdSxkqlpvsOwh27aUi4ZpbZLCHwNXDDNqIswWnG4CaNcAPbU/i7wgdr31bGmQ/XufZJJF/MVhu8Bf5VM0wPeVfuXkRXvAJ+qczuJazvAFyYKliQSTP8AmBtk8g2y86YXpL5DfGffJ76zsDz2uWZQZm3M/Z7Q62gnVB8pXwJ+QFb2wIZiDTKBeHHxmOpG+cqGNo4whrgpP2xOD6d4CLFRxs3p4RRjiI0SIde6v80czf1eBMs92h8bUsYVFvXXr2TNFAtjhxYym/u9RUcwPfb5fsPKuMJSvdNGGVHTNzQOE5FaRpo2SgTc3pQ2jnBbO1hN2qdo3hbfsuRLNHnxlLZ314uSWc88o4yRM23bzCE5ndZVkbeb1PB1pyNMkPXLZF048ku2720UIeuVyzqjzIB9W9o4wj5rJsuKBK4nbI/jPaCASygazR/RfsMcUOBbHyg3xTGinT5G+5BR0QRl532OKPBMOsQMqW+psEiVybAJ8lsZ1+MvR0g9S3crqs4Q6iZ5E/cepwipV+VH3XTa9BB5N0aG+dhihNTHqDduYy55hvTs+zQX6x2r8g+w4O9sTrCPkYrtspm4jI6D7GL5huSFDmxg+qcyWVj/U5m53zt3rk6jpHHz74cyjPIfjE3aujg49boAAAAASUVORK5CYII=";
+        }
+        else {
+            return "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEUAAABFCAYAAAAcjSspAAAFIUlEQVR4nO2cz4scRRTHP7WZk2Bo/wCxVwRXEO0EhCUgOwuiB8GMSC4ScPaSa3ZPniQTvLsbPbkIs4EQ8CCuAc87i0RRiU6y6iKC2yoBbw7ixdN4eFXZ3u6enu6urpmeiV8o+ver199+7/Wr6qpW3L7DBOEBgS4e8ATgx84Jgd/0ek9vh64UGp47m9jXcFWZhge0gBWgSZKAcbiilwOEoH1gF4ckAShHltIGziOEuEAfuIYQNLARlGYpCyioqHgoOij+QtFF0apQdrwEuo4jFJso/NKyUrCQn9NMdIAjxNy9imTmgQes67o7VdWt+Oo7m+ubQJfiscIVBsAa4la5MFw+k9hX1lI8YBPYoz6EgOj1qS6lraYMKQFCxnrZSieAFuJSQZmLiwbaJoo9HehcBdEqA//3KNouA20bsZBJBtIq0EV0z40GagRdJ9HWwmcVRvedPCc3RplQBC1mmxCD3MSMc5+A+SDEoEuOLDvLUszrbdZiyDh0kbZTf9QJWTFlkknZx5y02gsO6/KQe0tmbRqjWsnruGvM3dTLf4BD4Lbe/lYvl4FPgFeA08AbDnQIkGZBJ+2g4k7Cijwk8XHhNjeQG86bhr8LPAe85kAXgDPDs88nCFhAKWJlE6W8lP1Vld0C577jUA+51xTEM1p/bAY4X6Wp+vcSYSL+Sr4SP6EG+NKx/IS1RN3HR6m2Y3OtY/HV3YNmlJRonnLZ8ROpMy4jfcDAyZjyMMWSeGmpgwPfkGKStxbzl7kWRQvYguNAe356utQGb5kV4z7NGpjwtEugfvzBA3GfAPBLsjtvaAK7DVS5fswJ41Zk/VRk/Sfgb73+BfJwLwIvlawnQJPilxQwKdzU5Y8c5+4jpJTFCoj7rFgIieMjvYw+zT+B+3r9sITMPGREcYvyluKDdB3Yvoq3kW6AXeAb4F9Lebb4HHi/5LU+SEZrE1O2gZ+B9yxkVI3QVkDe3vws1IkQa6hfDpt5evOzkPub7SzBhpRtjgNoneDbCmhgZyr3bBVwgBdtBdi6Tx1hk6cADGxJeRL41VKJqvAY8KGtkOHiUr+BdK40S1x/CemdnwYpURdZAR5HYsnLVQi3tZQXkDaHS7wNnItsm2z5VQd19UEy2n3KWQrA0xnHngIeRfpslvW+BeCDEvW4+u4TRwhCyshvqjlh/Dj6ZcA8zbXYuTcs63KNu2BPyqVqdKkNeiBPN8TxCOZZwdBf6sGxyc9lul4QDzgwpFyfkiJ1wmdmxZDS538XSlgKPNzWsjP0lx5MfIiSsjUFZeqCa9GNKCkDcg6pnDP0hv7SibQkPhTj6gSUeGQCdRRB4p7jpIRpJ1WIi1TUaKsIuyY3iSJtHO0Wbt9EF8huM0XxDPCsIz0GwEbagbTRkWbOzJ4jZd7Uy/vA18DvevsUQsBpTraKXYyOBPGIMO2A4mjk96lN6j19xQY9YBVg6C8lDmYNQ9/AvgVdR4TA61knjBubv4rlbM6aYYAQknlP40gZMF/ErJHD+vNMguozH8SskbM3IO/MsFkmxrxNd/JeUGS6nCFmloKvcf+dIhcVnW1qiJmFTqk+Mn2l8EMsMwXXRPAN6utOVxFCwjIX20zr39IV9yxkVA1jHR0bIbb/OggRd1pluj13IRJMS7lLHFX9AKIHLCKK9SqSmQehrnORCvuCsto+NgiQEcwtqh+jO0AC/XUqeABpbR9XpEQRcPy3HfPboaLoIZ93e1RsiWmkuP79EIiPR/3cj5U0hLEyUfwH2VLx1nu2Q1cAAAAASUVORK5CYII=";
+        }
+    }
+
+    SelectUnSelctAll(cat: SelectableCategory) {
+        cat.sub_categories.forEach((obj, i, items) => {
+            obj.chacked = cat.chacked;
+        })
+    }
+
+    closePopup() {
+<<<<<<< HEAD
+        this.exit.emit(this.selectedSubCategories);
+=======
+        var dummy = new Array<Category>();
+        this.exit.emit(dummy);
+>>>>>>> aa044c9bf864a63d96e2fc9d38046afac4e64986
+    }
+
+    update() {
+<<<<<<< HEAD
+        var items: string[] = [];
+        var userCat : SelectableCategory[] = [];
+        this.selectedSubCategories.forEach(function (obj, i) {
+            if (obj.chacked) {
+                items.push(obj.id)
+                userCat.push(obj);
+            }
+            obj.sub_categories.forEach(function (obj, i) {
+                if (obj.chacked) {
+                    items.push(obj.id)
+                    userCat.push(obj);
+                }
+            })
+        })
+
+        this.userService.UpdateUserCategories(items)
+            .then(res => {
+                if (res.isOk) {
+                    this.exit.emit(userCat);
+                }
+            })
+=======
+        for (var i = 0; i < this.selectedSubCategories.length; i++) {
+            if (this.selectedSubCategories[i].chacked) {
+                this.cagetories.push(this.selectedSubCategories[i]);
+            }
+        } 
+        this.exit.emit(this.cagetories);
+>>>>>>> aa044c9bf864a63d96e2fc9d38046afac4e64986
+    }
+
+    InitText() {
+        this.__select_all = LanguageService.GetValue("select_all");
+        this.__EditSpecialistCategories_title = LanguageService.GetValue("EditSpecialistCategories_title");
+        this.__update_btn = LanguageService.GetValue("update_btn");
+    }
+}
+

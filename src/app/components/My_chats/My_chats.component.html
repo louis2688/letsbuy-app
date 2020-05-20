@@ -1,0 +1,45 @@
+﻿<div class="main_container ">
+    <div class="top">
+        <Menu style="width: 92%;"></Menu>
+        <div class="title baloo-font">{{__my_chats_title}}</div>
+        <input class="search" [(ngModel)]="filter" type="search" placeholder={{__search_chat}}>
+        <div class="bar_container">
+            <div (click)="ChangeTab('all')" [class]="tabChecked == 'all' ? 'divider1 tabChecked' : 'divider1' ">{{__all_chats}}</div>
+            <div (click)="ChangeTab('specialist')" [class]="tabChecked == 'specialist' ? 'divider2 tabChecked' : 'divider2' ">{{__specialist_chats}} <span class="badge">{{specialist_chats}}</span></div>
+            <div (click)="ChangeTab('user')" [class]="tabChecked == 'user' ? 'divider3 tabChecked' : 'divider3' ">{{__user_chats}}<span class="badge">{{user_chats}}</span></div>
+            <div (click)="ChangeTab('favorite')" [class]="tabChecked == 'favorite' ? 'divider4 tabChecked' : 'divider4' ">{{__favorites}}</div>
+        </div>
+        <div class="clear_border"></div>
+    </div>
+    <div class="list_container">
+        <div *ngFor="let c of items | ChatFilter:tabChecked:filter"  [class]="c.isSpecialist ? 'chat specialist' : 'chat user'">
+            <div class="background ">
+                <div class="color "></div>
+                <img class="picture" [src]="c.picture | DefaultImageProfilFilter" [routerLink]="['/My_Hi',c.id]" (error)="DefultImage($event)">
+            </div>
+            <div class="clear_float ">
+                <div [class]="c.isAvailable ? 'available show' : 'available'"></div>
+            </div>
+            <div class="separator">
+                <div class="container_txt"  [routerLink]="['/My_Hi',c.id]">
+                    <div class="name baloo-font">{{c.name}}</div>
+                    <div class="message">
+                       {{c.lastMassage}}
+                    </div>
+                    <div class="time">{{c.timeString}}</div>
+                </div>
+                <div [routerLink]="['/Chat_Speciality',c.id]" [class]="c.isFavor ? 'notification favorite' : 'notification'">
+                    <div class="numberCircle">{{c.notification}}</div>
+                </div>
+            </div>
+            <div class="more " [routerLink]="['/Chat_Speciality',c.id]">
+                <span class="glyphicon arrow">&#xe080;</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="footer ">
+        <div class="btn" [routerLink]="['/Search_specialist']"></div>
+        <div class="new_chat_txt baloo-font" [routerLink]="['/Search_specialist']"><strong>{{__new_chat_line1}}<br />{{__new_chat_line2}}</strong></div>
+    </div> -->
+</div>

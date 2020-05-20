@@ -1,0 +1,9 @@
+<div *ngIf="_isShow" class="main_container">
+    <div class="tool_bar">
+        <img class="back" src="./assets/images/back.png" (click)="exit()" />
+        <img class="rotate_left" src="./assets/images/rotate_left.png" (click)="RotateImage(-90)" />
+        <img class="rotate_right" src="./assets/images/rotate_right.png" (click)="RotateImage(90)" />
+    </div>
+    <img [class]="zoom? 'image zoom' : 'image'"  (click)="ToggleZoom()"
+         #displayImage [src]="_image | image64Secure" />
+</div>

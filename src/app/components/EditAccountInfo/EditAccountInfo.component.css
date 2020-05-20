@@ -1,0 +1,38 @@
+.border {
+    width: 100%;
+    margin: 2vmin auto;
+    height: 1px;
+    background-color: #43454c;
+}
+
+.field {
+    color: var(--font_color-);
+    font-size: var(--second_font_size-);
+    width: 20%;
+    display: inline-block;
+    margin: 3px 0;
+}
+
+.field_input {
+    margin: 3px 2%;
+    margin-left: 5%;
+    border: 0;
+    background-color: white;
+    font-size: var(--second_font_size-);
+    width: 100%;
+    padding: 0 5px;
+    color: black
+}
+
+.form_btn {
+    color: white;
+    text-decoration: underline;
+    font-size: var(--second_font_size-);
+    margin: 3px 20%;
+    width: 10%;
+    display: inline-block;
+}
+
+.expended_width {
+    width: 43%;
+}

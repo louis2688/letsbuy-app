@@ -1,0 +1,46 @@
+.main_container {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1000000;
+    background: linear-gradient(rgba(60,70,90,0.7),rgba(0,0,0,0.8));
+}
+
+.tool_bar {
+    width: 100%;
+    background: linear-gradient(#3c445d,#3b3e48);
+    padding: 5px 4%;
+    position: relative;
+    direction: ltr;
+    text-align:left;
+}
+
+Menu {
+    margin: 0;
+    padding: 0;
+}
+
+.image {
+    width: 92%;
+    margin: 10vmin 4%;
+    transition: transform .5s;
+}
+    .image.zoom {
+        transform: scale(1.4);
+    }
+
+.rotate_right, .rotate_left {
+    position: absolute;
+    right: 4%;
+    top: 5px;
+    width: 10%;
+}
+
+.rotate_left {
+    right: 16%;
+}
+
+.back{
+}

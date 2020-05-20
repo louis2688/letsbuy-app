@@ -1,0 +1,7 @@
+<div *ngIf="isFollow; else default">
+    <img src="./assets/images/follow_active.png" (click)="click()"/>
+</div>
+
+<ng-template #default>
+    <img src="./assets/images/follow.png" (click)="click()"/>
+</ng-template>

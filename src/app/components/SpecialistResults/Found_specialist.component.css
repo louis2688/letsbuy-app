@@ -1,0 +1,284 @@
+﻿.main_container {
+    width: 100%;
+    height: 100%;
+}
+
+.top {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    padding-top: 3%;
+    background: linear-gradient(#fcfcfc, #ebeced);
+    z-index: 100;
+}
+
+Menu {
+    position: absolute;
+    top: 6%;
+    left: 4%;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    text-align: center;
+    background-color: white;
+    border-radius: 20px;
+    width: 57%;
+    margin: 0 auto;
+    margin-bottom: 2%;
+    border: 1px solid lightgrey;
+}
+
+.main_title {
+    font-size: var(--main_font_size-);
+}
+
+.sub_title {
+    font-size: var(--medium_font_size-);
+    color: var(--font_color-);
+}
+
+.logo {
+    width: 40%;
+}
+
+.bar_container {
+    width: 100%;
+    margin: 2% auto;
+}
+
+.divider,
+.divider,
+.divider {
+    width: 50%;
+    padding: 5px;
+    text-align: center;
+    float: left;
+    font-size: var(--medium_font_size-);
+    color: black;
+}
+
+.divider.active {
+    text-decoration: underline;
+}
+
+.divider2 {
+    width: 32%;
+    border-right: 1px solid #a7aab4;
+    border-left: 1px solid #a7aab4;
+}
+
+.list_container {
+    width: 100%;
+    overflow-y: scroll;
+    background-color: white;
+}
+
+.chat {
+    width: 100%;
+    height: 90px;
+    position: relative;
+    padding: 0 2%;
+    border-bottom: 1px solid lightgrey;
+}
+
+.clear_border {
+    clear: both;
+    background: var(--BG1_blue-);
+    height: 7px;
+}
+
+.clear_float {
+    clear: both;
+    content: "";
+}
+
+.clear {
+    height: 100%;
+    float: left;
+}
+
+.available {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: var(--BG3_green-);
+    margin: 10px 0;
+    opacity: 1;
+}
+
+.available.off {
+    opacity: 0;
+}
+
+.picture {
+    width: 70px;
+    z-index: 10;
+    float: left;
+    margin: 9.5px 4%;
+    border-radius: 50%;
+}
+
+.follow {
+    position: absolute;
+    bottom: 9.5px;
+    left: 7%;
+    width: 10vmin;
+}
+
+.container_txt {
+    height: 100%;
+    padding: 5px 0;
+    float: left;
+    margin: 0 4%;
+    width: 59%;
+    overflow: hidden;
+}
+
+.name {
+    font-size: 1em;
+    margin-bottom: 10px;
+}
+
+.rating {
+    font-size: 1em;
+    float: left;
+    margin-right: 2%;
+}
+
+.Specialities {
+    font-size: 0.8em;
+    margin-top: 10px;
+}
+
+.name,
+.rate,
+.Specialities {
+    color: var(--font_color-);
+}
+
+@media(orientation:landscape) {
+
+    .name,
+    .rate {
+        font-size: 1.2em;
+    }
+
+    .Specialities {
+        font-size: 1em;
+        margin-top: 5px;
+    }
+
+    .star {
+        margin: 0 1px;
+
+    }
+}
+
+.more {
+    position: absolute;
+    right: 0;
+    height: 100%;
+    top: 0;
+}
+
+.sales {
+    position: absolute;
+    top: 8%;
+    right: 8%;
+}
+
+.star {
+    position: relative;
+    height: 20px;
+    width: 20px;
+    float: left;
+}
+
+.star>img {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0;
+}
+
+/*.star > .full {
+       
+        clip: rect(0, 10px, 20px, 0);
+    }*/
+
+.go2chat {
+    padding: 5px 15px;
+    background: var(--BG3_green-);
+    border-radius: 30px;
+    color: white;
+    font-size: var(--second_font_size-);
+    position: absolute;
+    right: 3%;
+    top: 35%;
+}
+
+@media(orientation:landscape) {
+    Menu {
+        top: 10%;
+    }
+
+    .logo {
+        width: 20%;
+    }
+
+    .name,
+    .rate {
+        font-size: 1.2em;
+    }
+
+    .Specialities {
+        font-size: 1em;
+        margin-top: 5px;
+    }
+
+    .star {
+        margin: 0 2px;
+    }
+}
+
+/********************RTL PROPERTYS********************/
+.main_container.rtl {
+    direction: rtl;
+}
+
+.picture.rtl,
+.clear.rtl,
+.container_txt.rtl,
+.rating.rtl,
+.star.rtl {
+    float: right;
+}
+
+.sales.rtl {
+    right: unset;
+    left: 8%;
+}
+
+.go2chat.rtl {
+    right: unset;
+    left: 3%;
+}
+
+.star.rtl>.full {
+    clip: rect(0, 20px, 20px, 7px);
+}
+
+.rating.rtl {
+    margin-right: 0;
+    margin-left: 2%;
+}
+
+@media (min-width: 1000px) {
+    .follow {
+        bottom: 12px;
+        width: 5%;
+    }
+}

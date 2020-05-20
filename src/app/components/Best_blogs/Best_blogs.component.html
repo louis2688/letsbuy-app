@@ -1,0 +1,18 @@
+﻿
+<div class="main_container">
+    <div class="top">
+        <Menu style="width: 92%;"></Menu>
+        <div class="header">
+            <div class="main_title baloo-font">Best Blogs</div>
+            <div class="sub_title">May the odds be ever in your favor</div>
+            <img class="logo" src="./assets/images/best_blogs.png" alt="#" />
+        </div>
+    </div>
+    <div class="list_container" >
+        <div class="img_container">
+            <img *ngFor="let b of items" [src]="b.coverImg"  [routerLink]="['/My_Hi',b.id]"/>
+            <div class="clear"></div>
+        </div>
+    </div>
+
+</div>

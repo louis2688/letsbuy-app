@@ -1,0 +1,49 @@
+<div class="main_container" *ngIf="new_post">
+    <img class="temp-back" (click)="CancelEdit()" src="./assets/images/back.png" alt="#" /><br />
+    <div class="top">
+        <!-- <Logo></Logo> -->
+        <div class="main_title baloo-font">{{isEdit ? 'Edit Blog Post' : 'New Blog Post' }}</div>
+        <div class="sub_title">Let's Help them Buy Through You</div>
+    </div>
+  
+    <div class="form">
+        <div *ngIf="isEdit" class="row">
+                <div class="col-xs-12">
+                    Share link:  <span class="clickable" (click)="CopyShareLink()">copy</span>
+                    <div class="copyable">{{sharelink}}</div>  
+                </div>
+            </div>
+        <label>Choose Post Title:</label>
+        <input type="text" placeholder="Your Title (30 chars or less)" [(ngModel)]="new_post.title" />
+        <div class="links_container">
+            <div class="link" *ngFor="let link of new_post.links">
+                <div>
+                    <img class="link_img" [src]="link.picture" />
+                    <div class="linkUrl">
+                        <a *ngIf="!mobilemode" [target]="'_blank'" [href]="link.linkUrl">{{link.linkUrl}}</a>
+                        <a *ngIf="mobilemode" [target]="'_self'" [href]="link.linkUrl">{{link.linkUrl}}</a>
+                    </div>
+
+                </div>
+
+                <img class="remove_link" src="./assets/images/close_icon.png" (click)="RemoveLink(link)" />
+            </div>
+        </div>
+        <div class="add_link baloo-font" *ngIf="new_post.links.length <3" (click)="AddLink()">{{new_post.links.length == 0 ? 'Add Your Link' : 'Add Another Link'}}</div>
+        <div *ngIf="new_post.image" style="max-width:100%;" (click)="SelectImageDialog()">
+            <img style="width:100%; max-height: 500px" [src]="new_post.image | image64Secure" />
+        </div>
+        <div *ngIf="!new_post.image" class="main_photo">
+            <div class="main_photo_text baloo-font">Main Photo</div>
+            <img src="./assets/images/takepic_blue.png" (click)="SelectImageDialog()" />
+        </div>
+        <label>And now, your post text:</label>
+        <textarea type="text" rows="5" placeholder="Your fun text (Unlimited chars! Hurray!)" [(ngModel)]="new_post.mainText"></textarea>
+        <div class="next_step baloo-font" (click)="Save()">{{isEdit ? 'Update' : 'Post It!' }} </div>
+        <div class="next_step cancel baloo-font" *ngIf="!isEdit" (click)="CancelEdit()">Cancel</div>
+        <div class="next_step cancel baloo-font" *ngIf="isEdit" (click)="Delete()">Delete</div>
+    </div>
+    <My_links [class]="is_My_links_open? 'open': ''" [isSelectMode]="true" [postMode]="true" (cancelPopup)="CloseMyLinks()" (selectLinkEvent)="selectedLink($event)"></My_links>
+    <input #imageUpload type="file" (change)="SelectImage()" style="display:none" />
+</div>
+<Toast></Toast>

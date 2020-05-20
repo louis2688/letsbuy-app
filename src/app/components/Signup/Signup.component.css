@@ -1,0 +1,471 @@
+﻿.background {
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background-color: #f5f5f6;
+    background-image: url("../../../assets/images/BGopening.png");
+    background-size: cover;
+    z-index:-1;
+}
+.main_container {
+    width: 100%;
+    height: 100%;
+}
+
+.header {
+    padding-top: 6%;
+    text-align: center;
+    position: relative;
+}
+
+.title {
+    text-align: center;
+    font-size: 5vmin;
+    font-size: var(--main_font_size-);
+}
+
+.subTitle {
+    text-align: center;
+    font-size: var(--second_font_size-);
+    color: lightgray;
+}
+Menu {
+    position: absolute;
+    top: 50%;
+    left: 4%;
+    margin: 0;
+    padding: 0;
+}
+
+#logo {
+    position: absolute;
+    width: 11%;
+    top: 0;
+    right: 0;
+    margin-top: 2%;
+    margin-right: 4%;
+}
+
+.steps_container {
+    width: 92%;
+    margin: auto;
+}
+
+.step_header {
+    text-align: center;
+    font-size: var(--main_font_size-);
+    margin-bottom: 4%;
+}
+
+.step0 > form,
+.step1 > form,
+.step2 > form,
+.step3 > form,
+.step4 > form
+.step5 > form{
+    height: 80%;
+    background-color: white;
+    border-radius: 10px;
+    padding: 35px 9.5%;
+    margin: 8% 0;
+}
+
+.step1 > form {
+    height: 65%;
+}
+
+form > label {
+    font-size: var(--second_font_size-);
+    margin-top: 7%;
+    color: darkgray;
+}
+
+input,
+input::-webkit-input-placeholder {
+    font-size: var(--name_font_size-);
+    color: lightgray;
+}
+
+
+
+input {
+    width: 100%;
+    height: 6%;
+    margin: 0;
+    margin-top: 2%;
+    background-color: transparent;
+    border: 0;
+    border-bottom: 2px solid lightgray;
+    color: black;
+}
+
+.inputError {
+    margin-top: 3px;
+    color: red;
+    width : 100%;
+}
+form > .select {
+    margin: 10px auto;
+    display:block;
+}
+
+.next_step {
+    background: linear-gradient(to bottom, #9a18ff, #8418af);
+    margin: 8% auto;
+    margin-bottom:0;
+    width: 75%;
+    padding: 4% 0;
+    color: white;
+    text-align: center;
+    border-radius: 50px;
+}
+
+    .next_step > span {
+        font-size: var(--second_font_size-);
+    }
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right:0;
+    width: 100%;
+    height: 8%;
+    background: linear-gradient(to bottom, #21242b, #0e0f12);
+}
+
+.footer_text {
+    float: left;
+    color: white;
+    font-size: var(--name_font_size-);
+    margin: 20px 0 0 10%;
+}
+
+.footer_btn {
+    margin: 10px 10px;
+    float: right;
+    border-radius: 30px;
+    width: 15%;
+    height: 60%;
+}
+
+    .footer_btn > div {
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        overflow: hidden;
+    }
+
+.footer_btn_container {
+    margin-right: 2.5%;
+    height: 100%;
+}
+
+.footer_facebook {
+    background-image: url("../../../assets/images/facebook_btn.png");
+    height: 75%;
+    width: 100%;
+    margin-top: 15%;
+}
+
+.footer_gmail {
+    background-image: url("../../../assets/images/gmail_btn.png");
+    height: 75%;
+    width: 100%;
+    margin-top: 15%;
+}
+
+.footer_gmail_container {
+    background-color: #d84532;
+}
+
+.footer_facebook_container {
+    background-color: #447ad6;
+}
+
+.container > input {
+    opacity: 0;
+    width: 15px;
+    height: 15px;
+}
+
+.container {
+    display: block;
+    position: relative;
+    padding:0 15%;
+    margin: 15px 0;
+    cursor: pointer;
+    font-size: var(--main_font_size-);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    background-color: #eee;
+}
+
+.container:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.container .checkmark:after {
+    right: 5%;
+    top: -30%;
+    width: 70%;
+    height: 110%;
+    background-image: url("../../../assets/images/V.png");
+    background-size: cover;
+    overflow: visible;
+}
+
+.textCondition {
+    width: 100%;
+    padding: 5%;
+    border-radius: 15px;
+    font-size: var(--second_font_size-);
+}
+
+.text_center_container {
+    width: 100%;
+    text-align: center;
+}
+
+.picture_container {
+    width: 100%;
+    height: 58%;
+    text-align: center;
+    background-image: url("../../../assets/images/BG-finish.png");
+    background-size: cover;
+    background-position: center;
+    border-radius: 15px;
+    margin: 6% auto;
+    padding: 7% 0%;
+}
+
+    .picture_container > #top {
+        font-size: var(--main_font_size-);
+    }
+
+.helper_container {
+    position: relative;
+    text-align: center;
+    width:200px;
+    margin:0 auto;
+}
+
+    .helper_container > .camera {
+        width: 60px;
+        height: 60px;
+        padding: 10px;
+        border-radius: 50%;
+        background-color: #fa03f5;
+        background-image: url("../../../assets/images/camera.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-origin: content-box;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+    }
+
+    .helper_container > .picture {
+        background-color: white;
+        background-image: url("../../../assets/images/User_NoPhoto.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+        border-radius: 50%;
+        width: 150px;
+        height: 150px;
+        margin: 15px auto;
+    }
+
+.picture_container > #username {
+    font-size: 10vmin;
+    color: white;
+}
+
+.picture_container > #partof {
+    font-size: var(--main_font_size-);
+    color: white;
+}
+
+.left_btn {
+    float: left;
+    margin: 2%;
+    width: 46%;
+}
+
+.right_btn {
+    float: right;
+    margin: 2%;
+    width: 46%;
+}
+
+.btn {
+    border-radius: 50px;
+    width: 100%;
+    margin: 2%;
+    color: white;
+    padding: 6% 0 ;
+    font-size: var(--second_font_size-);
+}
+
+#update_info {
+    background: linear-gradient(#3c435d, #3b3e47);
+}
+
+#update_myhi {
+    background: linear-gradient(#00c5cd, #00dfd7);
+}
+
+#buy {
+    background: linear-gradient(#00c5cd, #00dfd7);
+}
+
+#chat {
+    background: linear-gradient(#44ef3f, #26c624);
+}
+
+.error {
+    font-size: 0.8em;
+    margin: 0;
+    padding: 0;
+    color: red;
+}
+
+.hidden {
+    display: none;
+}
+
+#resend {
+    width: 100%;
+    text-align: right;
+    margin-top: auto 20px;
+    text-decoration: underline;
+}
+
+.validationInput {
+    width: 80px;
+    max-width: 10%;
+    border-bottom: 3px black solid;
+    margin: 5px;
+    font-size: 25px;
+    text-align: center;
+}
+.loader_container {
+    width: 150px;
+    height:150px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.6);
+    position:relative;
+}
+
+.loadersmall {
+    position: absolute;
+    border: 5px solid #f3f3f3;
+    animation: spin 1s linear infinite;
+    border-top: 5px solid #555;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    left: 35px;
+    top: 35px;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+@media(orientation:landscape) {
+
+    #logo {
+        width: 10%;
+    }
+
+    .next_step {
+        width: 65%;
+        padding: 2% 0;
+        font-size: 4vmin;
+    }
+    .footer_btn {
+        width: 10%;
+    }
+    .footer_facebook, .footer_gmail {
+        margin-top: 10%;
+    }
+    .footer {
+        height: 12%;
+    }
+
+    .footer_text {
+        margin: 15px 0 0 12.5%;
+    }
+    .footer_btn_container {
+        margin-right: 10%;
+    }
+}
+
+/****************RTL PROPERTYS******************/
+
+.main_container.rtl {
+    direction: rtl;
+}
+
+.footer_text.rtl {
+    float: right;
+    margin-left: 0;
+    margin-right: 10%;
+}
+.menu.rtl{
+    left:unset;
+    right:0;
+    transform:rotate(180deg);
+}
+.logo.rtl{
+    right:unset;
+    left:0;
+}
+.checkmark.rtl{
+    left:unset;
+    right:0;
+}
+@media (min-width: 1000px) {
+    .background, .main_container,.footer {
+        max-width: 600px;
+        margin: auto;
+    }
+    .footer{
+        height:8%;
+    }
+
+    .next_step {
+        width: 50%;
+        padding: 2% 0;
+        font-size: 3vmin;
+    }
+}

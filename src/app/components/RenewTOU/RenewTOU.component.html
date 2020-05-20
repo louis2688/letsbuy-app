@@ -1,0 +1,29 @@
+﻿<div class="background"></div>
+<div class="main_container">
+    <div class="header">
+        <div class="title baloo-font">{{__tou_title}}!</div>
+        <div class="subTitle">{{__tou_subtitle}}</div>
+        <Menu style="width: 92%;"></Menu>
+        <!-- <Logo></Logo> -->
+    </div>
+
+    <div class="content">
+        <div class="title"><strong>{{__second_title}}</strong></div>
+
+        <div class="txt_left">
+            {{__command}}
+        </div>
+        <loadingBar *ngIf="loading"></loadingBar>
+        <div *ngIf="!loading" disabled class="textCondition" [innerHTML]="content"> </div>
+        <br />
+        <label *ngIf="haveToAgree && !isGuest" class="container" id="acceptLabel">
+            {{__agree}}
+            <input type="checkbox" [(ngModel)]="agree" name="touAgree" />
+            <span class="checkmark"></span>
+        </label>
+        <div *ngIf="!isGuest" (click)="Next()" [class]="'next_step ' + (CanContinue()? '' : 'disabled')">
+            <span>{{__continue}}</span>
+        </div>
+
+    </div>
+</div>

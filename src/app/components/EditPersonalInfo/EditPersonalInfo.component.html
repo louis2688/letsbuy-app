@@ -1,0 +1,53 @@
+<form class="edit_personal_info">
+    <div class="border"></div>
+    <div class="box">
+        <!-- <span class="field">{{__f_name}}: </span>
+        <input class="field_input" name="fname" type="text" [(ngModel)]="currentUser.fname"
+               [attr.disabled]="!personalInfo_EditMode?'':null" /><br />
+        <span class="field">{{__l_name}}: </span>
+        <input class="field_input" name="lname" type="text" [(ngModel)]="currentUser.lname"
+               [attr.disabled]="!personalInfo_EditMode?'':null" /><br /> -->
+        <span class="field">Nickname: </span>
+        <input class="field_input" name="nickname" type="text" [(ngModel)]="currentUser.nickname"
+                [attr.disabled]="!personalInfo_EditMode?'':null" /><br />
+        <span class="field">Email: </span>
+        <input class="field_input" name="email" type="text" [(ngModel)]="currentUser.email"
+               [attr.disabled]="!personalInfo_EditMode?'':null" /><br />
+        <br />
+        <span class="field">{{__state_}}: </span>
+        <Select_cmp class="select"
+                    [items]="locationsDic"
+                    [innerPadding]="'3px 8px'"
+                    [selectedKey]="currentUser.location"
+                    [selectedItemstring]="'Select State'"
+                    (openClosePopupEvent)="ChooseLocation($event)">
+        </Select_cmp>
+        <span class="form_btn edit" *ngIf="!personalInfo_EditMode" (click)="TogglePersonalInfo_EditMode()">{{__edit}}</span>
+        <div class="edit_mode_btn" *ngIf="personalInfo_EditMode">
+            <span class="form_btn" (click)="updateBaseData()">{{__save}}</span>
+            <span class="form_btn" (click)="TogglePersonalInfo_EditMode()">{{__cancel}}</span>
+        </div>
+        <div class="clear"></div>
+    </div>
+    
+    <div class="border"></div>
+
+    <!-- the first lang and last lang are differ !! -->
+    <div class="lang" *ngFor="let lang of currentUser.languagesList ; let i = index">
+        <span class="field">{{i==0? 'Languages:' : ''}}</span>
+        <span class="value expended_width" >{{lang.DispalyName}}</span>
+        <span class="form_btn action" (click)="RemoveLang(i)">{{__remove}}</span>
+    </div>
+    <div class="lang">
+        <span class="field"> </span>
+        <span class="value expended_width" (click)="AddLang()">{{__add_lang}}</span>
+        <span class="form_btn action"></span>
+    </div>
+
+
+    <div class="border"></div>
+    <span class="form_btn" (click)="ResetPassword()">{{__reset_pass}}</span>
+</form>
+
+<EditLanguagesList *ngIf="EditLanguagesList" (updateLanguages)="updateLanguages($event)"></EditLanguagesList>
+<Pop_message [_msg] = " 'We sent you a new password to your e-mail' " [_target]="'ResetPassword'" [_isShow]="popResetPass"></Pop_message>

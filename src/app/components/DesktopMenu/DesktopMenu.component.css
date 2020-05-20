@@ -1,0 +1,12 @@
+.backgroundTop {
+    height: 62px;
+    background: linear-gradient(#3c445d,#3b3e48);
+    padding:0,0,5px,0;
+    z-index: 100000;
+}
+Menu{
+    margin:0;
+}
+Menu,Logo{
+    display: block;
+}

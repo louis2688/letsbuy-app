@@ -1,0 +1,76 @@
+<div class="background"></div>
+<div class="main_container">
+    <div class="top">
+        <Right_menu *ngIf="!isLoding && currentPost.isOwner" [NavigateToPostID]="currentPost.id"></Right_menu>
+        <Menu style="width: 92%;"></Menu>
+        <div *ngIf="!isLoding" class="main_title baloo-font">{{currentPost.title}}</div>
+        <div *ngIf="!isLoding" class="sub_title">{{currentPost.date.toDateString()}}</div>
+    </div>
+    <div *ngIf="isLoding">
+        <loadingBar></loadingBar>
+    </div>
+
+    <div *ngIf="!isLoding" class="blog_pic">
+        <img *ngIf="currentPost.image && currentPost.image !=''" [src]="currentPost.image" />
+    </div>
+    <div *ngIf="!isLoding" class="blog_container">
+        <div class="blog_header baloo-font"></div>
+        <div class="right_side">
+            <div *ngFor="let link of currentPost.links">
+                <div *ngIf="!isGuest" class="to_link">
+                    <a class="link" *ngIf="!mobilemode" [target]="'_blank'" [href]="link.linkUrl"> {{__go_to_link}}</a>
+                    <a class="link" *ngIf="mobilemode" [target]="'_self'" [href]="link.linkUrl">{{__go_to_link}}</a>
+                </div>
+                <div *ngIf="isGuest" class="to_link">
+                    <a class="link" (click)="GusetPopup()"> {{__go_to_link}}</a>
+                </div>
+                <div class="picture_container">
+                    <div class="img_container">
+                        <img [src]="link.picture" />
+                        <Bag [isInWishList]="link.isInWish" [item_id]="link.id"></Bag>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="blog_txt" [innerHtml]="currentPost.mainText ? currentPost.mainText.replace('\n','<br/>') : ''" ></div>
+    </div>
+
+    <div *ngIf="!isLoding" [class]="isOpen ? 'footer_container open' : 'footer_container' ">
+        <div class="footer" [style.background-image]="'url(' + currentSpecialist.cover_picture + ')' | image64SecureToStyle">
+            <img class="specialist_pic" [src]="currentSpecialist.picture | DefaultImageProfilFilter" (click)="openBlog()"/>
+            <div class="go2chat" (click)="Go2Chat(currentPost.specID)">
+                <img src="./assets/images/chat_now.png" />
+                <div class="btn_txt baloo-font">{{__chat_now}}</div>
+            </div>
+            <div class="container_details">
+                <div class="name baloo-font">{{currentSpecialist.fname}} {{currentSpecialist.lname}}</div>
+                <div class="rate" [routerLink]="['/Reviews',currentPost.specID]" >
+                    <div class="rating">{{currentSpecialist.rate}}</div>
+                    <div class="star star1">
+                        <img class="empty" src="./assets/images/1Star.png" />
+                        <img class="full" [style.clip]="currentSpecialist.rate | clipSafe : 1" src="./assets/images/1StarFull.png" />
+                    </div>
+                    <div class="star star2">
+                        <img class="empty" src="./assets/images/1Star.png" />
+                        <img class="full" [style.clip]="currentSpecialist.rate | clipSafe : 2" src="./assets/images/1StarFull.png" />
+                    </div>
+                    <div class="star star3">
+                        <img class="empty" src="./assets/images/1Star.png" />
+                        <img class="full" [style.clip]="currentSpecialist.rate | clipSafe : 3" src="./assets/images/1StarFull.png" />
+                    </div>
+                    <div class="star star4">
+                        <img class="empty" src="./assets/images/1Star.png" />
+                        <img class="full" [style.clip]="currentSpecialist.rate | clipSafe : 4" src="./assets/images/1StarFull.png" />
+                    </div>
+                    <div class="star star5">
+                        <img class="empty" src="./assets/images/1Star.png" />
+                        <img class="full" [style.clip]="currentSpecialist.rate | clipSafe : 5" src="./assets/images/1StarFull.png" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <Pop_message></Pop_message>
+
+    <Toast></Toast>
+</div>

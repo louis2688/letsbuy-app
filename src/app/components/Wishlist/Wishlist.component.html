@@ -1,0 +1,42 @@
+<div class="main_container">
+    <div class="top">
+        <!-- <Logo></Logo> -->
+        <Menu style="width: 92%;"></Menu>
+        <div class="header">
+            <div class="main_title baloo-font">{{__wishlist_title}}</div>
+            <div class="sub_title">{{__wishlist_subtitle}}</div>
+            <input [(ngModel)]="searchStr" class="product_input" type="text" placeholder="{{__wishlist_search_item}}" />
+        </div>
+    </div>
+    <div class="list_container">
+        <div class="item" *ngFor="let i of ItemList | productFilter:searchStr ; let j = index">
+            <img class="trash" src="./assets/images/trash.png" (click)="RemoveItemFormWishList(j,i.id)" />
+            <div class="picture_container">
+                <img class="picture" [src]="i.imageUrl" (error)="DefultImage($event)"/>
+                <img class="specialist" [src]="i.ProfileImageUrl" [routerLink]="['/Chat_Speciality',i.specID]">
+                <div class="btn baloo-font BG_purple">
+                    <a class="clickable" *ngIf="!mobilemode" [target]="'_blank'" [href]="'./GoToLink/' + i.id">{{__buy_now}}</a>
+                    <a class="clickable" *ngIf="mobilemode" [target]="'_self'" [href]="'./GoToLink/' + i.id">{{__buy_now}}</a>
+                </div>
+                <div class="chat btn baloo-font BG_green" [routerLink]="['/Chat_Speciality',i.specID]">
+                    {{__chat}}
+                </div>
+                <Follow [spec_id]="i.specID" [isFollow]="i.isFollow" (click)="ToggleIsFollow(i)"></Follow>
+            </div>
+            <div class="txt_container">
+                <div class="description">{{i.productDesc}}</div>
+                <span class="site">{{i.siteName}}</span>
+               
+                <div class="name baloo-font">
+                    <div [class]="i.specOnline ? 'available online' : 'available'"></div>
+                    {{i.specName}}
+                </div>
+                <div class="specialities">
+                    {{__specialities}}:
+                    <span *ngFor="let s of i.specialitiesList"> {{s}}, </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<Toast></Toast>

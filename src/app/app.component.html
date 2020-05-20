@@ -1,0 +1,8 @@
+<DesktopMenu></DesktopMenu>
+<div class="backgroundAll"> </div>
+<div class="main-body">
+    <div class="router-outlet-container" #scrollContainer>
+        <router-outlet (activate)="onActivate($event, scrollContainer)"></router-outlet>
+        <div id="iphone_bar_placeholder"></div>
+    </div>
+</div>

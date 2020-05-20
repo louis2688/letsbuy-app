@@ -1,0 +1,207 @@
+<div class="background"></div>
+<div class="main_container">
+    <div class="fixed">
+        <div class="top">
+            <Menu style="width: 92%;"></Menu>
+            <!-- <Logo></Logo> -->
+            <div class="header">
+                <div class="main_title baloo-font">{{__search_specialist_title}}</div>
+                <div class="sub_title">{{__search_specialist_subtitle}}</div>
+                <!-- <img class="logo" src="./assets/images/find_specialist.png" alt="#" /> -->
+            </div>
+        </div>
+        <div class="step_container">
+            <div class="step1" style="display: none;">
+                <!-- <label class="catagory">{{__catagory}}</label><br /> -->
+                <div>
+                    <Select_cmp #categotys class="select" [selectedItemstring]="categoryPlaceHolder"
+                        [innerPadding]="'5px'" [title]="__catagory2buy" [bg_white]="true"
+                        (openClosePopupEvent)="CalcSubCategories($event)">
+                    </Select_cmp>
+                </div>
+            </div>
+            <div class="testimonial-group">
+                <div class="row text-center">
+                    <label class="lblCategory" id="{{category.key}}" *ngFor="let category of cagetoriesDic;"
+                        (click)=CalcSubCategories(category)>{{category.value}}</label>
+
+                    <!-- <label class="lblCategory">sdfsefwefwefwe</label>
+                            <label class="lblCategory">abc</label>
+                            <label class="lblCategory">abc</label>
+                            <label class="lblCategory">abc</label>
+                            <label class="lblCategory">abc</label>
+                            <label class="lblCategory">abc</label>
+                            <label class="lblCategory">abc</label>
+                            <label class="lblCategory">abc</label>
+                            <label class="lblCategory">abc</label>
+                            <label class="lblCategory">abc</label> -->
+
+                    <!-- <div class="col-xs-4">1</div>
+                                <div class="col-xs-4">2</div>
+                                <div class="col-xs-4">3</div>
+                                <div class="col-xs-4">4</div>
+                                <div class="col-xs-4">5</div>
+                                <div class="col-xs-4">6</div>
+                                <div class="col-xs-4">7</div>
+                                <div class="col-xs-4">8</div>
+                                <div class="col-xs-4">9</div> -->
+                </div>
+            </div>
+            <!-- <div style='overflow-x:scroll;overflow-y:hidden;width:250px;height:200px'>
+                            <div style='width:400px;height:250px'>
+                                <label class="lblCategory">sdfsefwefwefwe</label>
+                                <label class="lblCategory">abc</label>
+                                <label class="lblCategory">abc</label>
+                                <label class="lblCategory">abc</label>
+                                <label class="lblCategory">abc</label>
+                                <label class="lblCategory">abc</label>
+                                <label class="lblCategory">abc</label>
+                                <label class="lblCategory">abc</label>
+                                <label class="lblCategory">abc</label>
+                                <label class="lblCategory">abc</label>
+                            </div>
+                        </div> -->
+
+            <br />
+            <div class="row">
+                <div class="col-xs-3">
+                    <i class="fa fa-sort" aria-hidden="true"></i>
+                    <div class="filterlabel">
+                        <Select_cmp #sortlist [selectedItemstring]="sortPlaceHolder" [innerPadding]="'5px'"
+                            [title]="__sortlist" [bg_white]="true" (openClosePopupEvent)="Sort($event)">
+                        </Select_cmp>
+                    </div>
+                    <!-- <label class="filterlabel">Sort</label> -->
+                </div>
+                <div class="col-xs-6" style="font-size: 20px; font-weight: 700;">
+                    <!-- Leading Specialists -->
+                </div>
+                <div class="col-xs-3" (click)="toggelFilter()">
+                    <i class="fa fa-filter" aria-hidden="true"></i>
+                    <!-- <div class="filterlabel">
+                        <Select_cmp #filterlist [selectedItemstring]="filterPlaceHolder"
+                            [innerPadding]="'5px'" [title]="__filterlist" [bg_white]="true"
+                            (openClosePopupEvent)="Sort($event)">
+                        </Select_cmp>
+                    </div> -->
+                    <label class="filterlabel">Filter</label>
+                </div>
+            </div>
+            <!-- <br /> -->
+            <div *ngIf="selectedCategory != '0'" id="filterpopup" class="step2">
+                <!-- <div class="checkBox_container">
+                            <div *ngFor="let scat of selectedSubCategories" class="col">
+                                <label class="container">
+                                    {{scat.name}}
+                                    <input type="checkbox" [(ngModel)]="scat.chacked" />
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="selectAll" (click)="SelectAllSubCat()">{{selectAllFlag ? __select_all : "Unselect all"}}</div> -->
+                <div class="Online_Specialists">
+                    <div class="relative_container">
+                        <img class="pic" src="./assets/images/follow.png" alt="#" />
+                        <div class="txt follow_text">Only Specialists I follow</div>
+                        <label class="container right">
+                            <input type="checkbox" [(ngModel)]="_q.favorite" />
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="Online_Specialists">
+                    <div class="relative_container">
+                        <img class="pic person_circel" src="./assets/images/person.png" alt="#" />
+                        <div class="available1"></div>
+                        <div class="txt">Only Online Specialists</div>
+                        <label class="container right">
+                            <input type="checkbox" [(ngModel)]="_q.online" />
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="btn_container">
+                    <div class="replace2step3">
+                        <h3 class="change_l" (click)="MoreOptions()">{{__change}}</h3>
+                    </div>
+                    <div [class]="'step3' + (moreOptions ? '':' hidden')">
+
+                        <Select_cmp #counries class="select" [selectedItemstring]="locationPlaceHolder"
+                            [innerPadding]="'5px'" [title]="__change_loc" [bg_white]="true"
+                            (openClosePopupEvent)="ChoosenLocation($event)">
+                        </Select_cmp>
+
+                        <Select_cmp #langs class="select" [selectedItemstring]="langPlaceHolder" [innerPadding]="'5px'"
+                            [title]="__change_lang" [bg_white]="true" (openClosePopupEvent)="ChoosenSpecLang($event)">
+                        </Select_cmp>
+
+
+                        <h3 class="less_options" (click)="MoreOptions()">{{__less_search_options}}</h3>
+                    </div>
+                    <div class="next_step BG_blue baloo-font" (click)="Search('true')">
+                        <span>{{__find_spec}} >>></span>
+                    </div>
+                </div>
+            </div>
+            <div class="clear_border"></div>
+        </div>
+    </div>
+
+    <div class="main_container loading" *ngIf="isLoading">
+        <loadingBar></loadingBar>
+    </div>
+
+    <div class="list_container" id="listofSpecialists">
+        <div *ngFor="let q of result | queryResultOrder:filter" class="chat">
+            <img class="picture " [src]="q.image | promiseImageSrc" (error)="DefultImage($event)" />
+            <Follow *ngIf="!isGuest" class="follow" [isFollow]="q.isFavorite" (click)="SetFavorite(q)"></Follow>
+            <div class="clear ">
+                <div [ngClass]="(q.isOnline == true) ? 'available' : 'available off'"></div>
+            </div>
+            <div class="container_txt " (click)="Go2Blog(q.id)">
+                <div class="name">{{q.name}}</div>
+                <div class="rate">
+                    <div class="rating ">{{q.ratesAvg}}</div>
+                    <div class="star star1">
+                        <img class="empty" src="./assets/images/1Star.png" />
+                        <img class="full" [style.clip]="q.ratesAvg | clipSafe : 1"
+                            src="./assets/images/1StarFull.png" />
+                    </div>
+                    <div class="star star2">
+                        <img class="empty" src="./assets/images/1Star.png" />
+                        <img class="full" [style.clip]="q.ratesAvg | clipSafe : 2"
+                            src="./assets/images/1StarFull.png" />
+                    </div>
+                    <div class="star star3 ">
+                        <img class="empty" src="./assets/images/1Star.png" />
+                        <img class="full" [style.clip]="q.ratesAvg | clipSafe : 3"
+                            src="./assets/images/1StarFull.png" />
+                    </div>
+                    <div class="star star4 ">
+                        <img class="empty" src="./assets/images/1Star.png" />
+                        <img class="full" [style.clip]="q.ratesAvg | clipSafe : 4"
+                            src="./assets/images/1StarFull.png" />
+                    </div>
+                    <div class="star star5 ">
+                        <img class="empty" src="./assets/images/1Star.png" />
+                        <img class="full" [style.clip]="q.ratesAvg | clipSafe : 5"
+                            src="./assets/images/1StarFull.png" />
+                    </div>
+                </div>
+                <div class="clear_float"></div>
+                <div class="Specialities">Specialities: {{q.categories | maxWidth : 15}} </div>
+            </div>
+            <div class="sales "><span>{{q.sales}}</span> sales</div>
+            <span class="go2chat" (click)="Go2Chat(q.id)">Chat</span>
+        </div>
+
+    </div>
+    <!-- <div class="bottom" (mousedown)="scrollSpecialists()" (mouseup)="stopscrollSpecialists()"
+        (touchstart)="scrollSpecialists()" (touchend)="stopscrollSpecialists()" id="bottombar">
+        <label>Load More</label>
+        <i class="fa fa-chevron-down" aria-hidden="true"></i>
+    </div> -->
+    <Toast></Toast>
+    <Pop_message></Pop_message>
+</div>

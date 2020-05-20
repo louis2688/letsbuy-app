@@ -1,0 +1,189 @@
+﻿<div class="background"></div>
+<div class="main_container">
+    <div class="header">
+        <div class="title baloo-font">
+            {{__signup_title}}
+        </div>
+        <Menu [hideMenu]="true"></Menu>
+    </div>
+   
+    <div class="steps_container">
+        <div class="step0" *ngIf="step==0">
+            <div class="subTitle">
+                {{__subtitle_step0}}
+            </div>
+            <form>
+                <loadingBar></loadingBar>
+                <div class="text_container error">{{errorMsg}}</div>
+            </form>
+        </div>
+        <div class="step1" *ngIf="step==1">
+            <div class="subTitle">
+                {{__subtitle_step1}}
+            </div>
+            <form>
+                <div class="step_header">
+                    <b>{{__step}} 1/4</b>
+                    <div class="text_container error">{{errorMsg}}</div>
+                </div>
+                <label id="userNameLabel">Email:</label>
+                <input type="text" name="username" (keyup)="register.Valid()" [(ngModel)]="register.UserName" placeholder={{__enter_username}} />
+                <span class="inputError">{{register.userNameError}}</span><br />
+                <label id="passwordLabel">{{__password}}: </label>
+                <input type="password" name="password" (keyup)="register.Valid()" [(ngModel)]="register.Password" placeholder={{__enter_password}} />
+                <span class="inputError">{{register.passwordError}}</span><br />
+                <label id="passwordConfirmLabel">Password confirmation: </label>
+                <input type="password" name="ConfirmPassword" (keyup)="register.Valid()" [(ngModel)]="register.ConfirmPassword" placeholder={{__password_again}} />
+                <span class="inputError"> {{register.confirmPasswordError}}</span><br />
+                <div class="next_step baloo-font" (click)="Register()">
+                    <span>{{__step1_next}} >>></span>
+                </div>
+            </form>
+        </div>
+        <div class="step2" *ngIf="step==2">
+            <div class="subTitle">
+                {{__subtitle_step2}}
+            </div>
+            <form>
+                <div class="step_header">
+                    <b>Step 1/4</b>
+                    <div class="text_container error">{{errorMsg}}</div>
+                </div>
+                <label style="width:100%">Insert the code from your mail</label>
+                <input maxlength="1" type="text" name="one" [(ngModel)]="mailValidationCode.one" class="validationInput" (change)="ValidMail()" />
+                <input maxlength="1" type="text" name="two" [(ngModel)]="mailValidationCode.two" class="validationInput" (change)="ValidMail()" />
+                <input maxlength="1" type="text" name="three" [(ngModel)]="mailValidationCode.three" class="validationInput" (change)="ValidMail()" />
+                <input maxlength="1" type="text" name="four" [(ngModel)]="mailValidationCode.four" class="validationInput" (change)="ValidMail()" />
+                <input maxlength="1" type="text" name="five" [(ngModel)]="mailValidationCode.five" class="validationInput" (change)="ValidMail()" />
+                <input maxlength="1" type="text" name="six" [(ngModel)]="mailValidationCode.six" class="validationInput final" (change)="ValidMail()" (keyup)="ValidMail()" />
+                <div id="resend" (click)="ResendCode()">
+                    <span>Send again?</span>
+                </div>
+            </form>
+        </div>
+        <div class="step3" *ngIf="step==3">
+            <div class="subTitle">
+                {{__subtitle_step3}}
+            </div>
+            <form>
+                <div class="step_header">
+                    <b>Step 2/4</b>
+                    <div class="text_container error">{{errorMsg}}</div>
+                </div>
+                <label id="nameLabel">{{__name_lable}}?</label>
+                <input name="fname" required [(ngModel)]="registerUserData.FirstName" placeholder={{__fname}} />
+                <span class="inputError">{{registerUserData.FirstNameError}}</span><br />
+                <input name="lname" [(ngModel)]="registerUserData.LastName" placeholder={{__lname}} />
+                <span class="inputError">{{registerUserData.LastNameError}}</span><br />
+                <input name="lname" [(ngModel)]="registerUserData.Nickname" placeholder="Nickname" />
+                <span class="inputError">{{registerUserData.NicknameError}}</span><br />
+                <label>{{__more_lable}}</label>
+                <input id="emailLabel" [disabled]="registerUserData.LockMailInput" name="email" [(ngModel)]="registerUserData.Email" placeholder={{__email}} />
+                <span class="inputError">{{registerUserData.EmailError}}</span><br />
+                <!-- <input id="birthdayLabel" type="text" name="birthday" onfocus="(this.type='date')" placeholder={{__birthday}} [ngModel]="registerUserData.Birthday | date:'yyyy-MM-dd'" (change)="SetBitdayValue($event.target.value)" /> -->
+                <span class="inputError">{{registerUserData.BithdayError}}</span><br />
+                <label id="selectionLabel">Your State</label>
+
+                <Select_cmp class="select"
+                            [items]="locationDic"
+                            [selectedItemstring]="locationPlaceHolder"
+                            [innerPadding]="'5px'"
+                            [title]="__location"
+                            (openClosePopupEvent)="ChoosenUserLocation($event)">
+                </Select_cmp>
+
+                <span class="inputError">{{registerUserData.StateIDError}}</span><br />
+
+                <div class="next_step baloo-font" (click)="SaveRegisterData()">
+                    <span>{{__step2_next}} >>></span>
+                </div>
+            </form>
+        </div>
+        <div class="step4" *ngIf="step==4">
+            <div class="subTitle">
+                {{__subtitle_step4}}
+            </div>
+            <form>
+                <div class="step_header">
+                    <b>{{__step}} 3/4</b>
+                    <div class="text_container error">{{errorMsg}}</div>
+                </div>
+                <label>{{__language}}?</label>
+                <div class="checkBox_container">
+                    <label class="container" *ngFor="let lang of langs">
+                        {{lang.DispalyName}}
+                        <input value="{{lang.ID}}" type="checkbox" (change)="AddRemoveLang($event.target.checked,$event.target.value)"  />
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+                <div class="next_step baloo-font" (click)="UpdateLangs()">
+                    <span>{{__step4_next}} >>></span>
+                </div>
+            </form>
+        </div>
+        <div class="step5" *ngIf="step==5">
+            <div class="subTitle">{{__subtitle_step5}}</div>
+            <form>
+                <div class="step_header">
+                    <b>Step 4/4</b>
+                    <div class="text_container error">{{errorMsg}}</div>
+                </div>
+                <label>{{__otu}}.</label>
+                <textarea disabled class="textCondition" rows="13">{{tosText}}</textarea>
+                <br/>
+                <label class="container" id="acceptLabel">
+                    <input type="checkbox" name="tosAgree" [(ngModel)]="tosAgree" />
+                    <span class="checkmark">
+
+                    </span>
+                    {{__agree}}
+                </label>
+                <div class="next_step baloo-font" (click)="tosAgreeBtn()">
+                    <span>{{__step5_next}}!</span>
+                </div>
+            </form>
+        </div>
+        <div class="stepFinish" *ngIf="step==6">
+            <!-- <div class="subTitle">{{__subtitle_step6}}!</div>
+            <div class="picture_container">
+                <label id="top">{{__welcome}}</label>
+                <div class="helper_container">
+                    <div [style]="GetBgImage() | image64SecureToStyle" class="picture">
+                        <div class="loader_container" *ngIf="loadingPicture">
+                            <div class="loadersmall"></div>
+                        </div>
+                    </div>
+                    <div (click)="SelectImageDialog()" class="camera"></div>
+                    <input #imageProfileUpload type="file" (change)="SelectImage()" style="display:none" />
+                </div>
+                <label id="username">
+                    {{__congrats}} <br /> {{username}}!
+                </label>
+                <br />
+                <label id="partof">
+                    {{__partof_line1}}<br />
+                    {{__partof_line2}}
+                </label>
+            </div>
+            <div class="left_btn baloo-font">
+                <button class="btn " id="update_info" [routerLink]="['/Hi_info']" >
+                    {{__btn1}}
+                </button>
+                <br />
+                <button class="btn" id="update_myhi" [routerLink]="['/Mi_Hi']">
+                    {{__btn2}}
+                </button>
+            </div>
+            <div class="right_btn baloo-font">
+                <button class="btn" id="buy" [routerLink]="['/Search_product']">
+                    {{__btn3}}
+                </button>
+                <br />
+                <button class="btn" id="chat" [routerLink]="['/Best_specialist']">
+                    {{__btn4}}
+                </button>
+            </div> -->
+        </div>
+    </div>
+</div>
+

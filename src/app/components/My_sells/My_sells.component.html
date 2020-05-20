@@ -1,0 +1,88 @@
+<div class="background"></div>
+<div class="main_container">
+    <div class="top">
+        <Menu style="width: 92%;"></Menu>
+        <div class="main_title baloo-font">{{__my_sells_title}}</div>
+    </div>
+    <div class="scroll_container">
+        <div class="dividers">
+            <div class="divider1">
+                <div class="title">{{__money_earned}}</div>
+                <div class="period">{{__total}}</div>
+                <div class="profit">{{model.totalProfit}}{{coinIcon}}</div>
+                <div class="sales"><span>{{model.totalSells}}</span>{{__Sales}}</div>
+            </div>
+            <div class="divider2">
+                <div class="title">{{__money_earned}}</div>
+                <div class="period">{{__month}}</div>
+                <div class="profit">{{model.thirtyDayProfit}}{{coinIcon}}</div>
+                <div class="sales"><span>{{model.thirtyDaySells}}</span> {{__Sales}}</div>
+            </div>
+            <div class="divider2">
+                <div class="title">{{__money_earned}}</div>
+                <div class="period">{{__prev_month}}</div>
+                <div class="profit">{{model.lastMonthProfit}}{{coinIcon}}</div>
+                <div class="sales"><span>{{model.lastMonthSells}}</span> {{__Sales}}</div>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div class="picture_container" *ngIf="model.mostSellable.sales > 0">
+            <div class="most_sellable" (click)="ToggleSellable()">
+                <div class="touched" *ngIf="isTouchedSellable">
+                    <div class="description">{{model.mostSellable.description}}</div>
+                    <div class="site">{{model.mostSellable.site}}</div>
+                    
+                    <div class="profit_per_unit">{{__profit_per_unit}}: <span>{{model.mostSellable.profit}}{{model.mostSellable.coinIcon}}</span></div>
+                </div>
+                <img [src]="model.mostSellable.img" />
+                <div class="txt_container">
+                    {{__most}}<br />{{__sellable}}<br />{{__product}}<br />
+                    <span class="num_sales">{{model.mostSellable.sales}} {{__sales}}</span>
+                </div>
+            </div>
+            <div class="most_profitable" (click)="ToggleProfitable()">
+                <div class="touched" *ngIf="isTouchedProfitable">
+                    <div class="description">{{model.mostProfitable.description}}</div>
+                    <div class="site">{{model.mostProfitable.site}}</div>
+                    
+                    <div class="profit_per_unit">{{__profit_per_unit}}: <span>{{model.mostProfitable.profit}}{{model.mostProfitable.coinIcon}}</span></div>
+                </div>
+                <img [src]="model.mostProfitable.img" />
+                <div class="txt_container">
+                    {{__most}}<br />{{__profitable}}<br />{{__product}}<br />
+                    <span class="num_sales">{{model.mostProfitable.sales}} {{__sales}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div class="list_container">
+            <div class="main_title baloo-font">{{__sales_info}}</div>
+            <div class="item allowed_toggle" *ngFor="let s of model.sellsList" (click)="click(s,$event,this)">
+                <span [class]="s.isOpen ? 'glyphicon glyphicon-chevron-up allowed_toggle' : 'glyphicon glyphicon-chevron-down allowed_toggle'"></span>
+                <div class="income allowed_toggle">
+                    <span>{{s.profit.toFixed(2)}}$</span>
+                    {{s.payed ?  __sent2u : 'will be paid soon' }}
+                </div>
+                <div class="from">
+                    {{__from}} <span class="site_name">{{s.siteName}}</span>
+                    {{__at}} <span class="time">{{s.time | date : "dd/MM/yyyy"}}</span>
+                </div>
+                <div [class]="s.isOpen ? 'expanded_from open' : 'expanded_from'">
+                    <div class="product_description">
+                        Product:{{s.productDesc}}
+                    </div>
+                    <!-- <Follow class="add_some" [isFollow]="s.buyerFollow" (click)="ToggleIsFollow(s)"></Follow> -->
+                    <br>
+                    <div class="buyer">
+                        {{__buyer}}: <span>{{s.buyerFName}} {{s.buyerLName}}</span>
+                    </div>
+                    <!-- <img class="buyer_pic" [src]="s.buyerPicture" [routerLink]="['/My_hi']" />
+                    <div class="btn chat" [routerLink]="['/Chat',s.buyerID]">{{__chat}}</div> -->
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <Toast></Toast>
+</div>

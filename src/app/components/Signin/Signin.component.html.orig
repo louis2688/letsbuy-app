@@ -1,0 +1,39 @@
+﻿<div class="main_container">
+    <div class="header">
+        <img src="../../../assets/images/logo.png" alt="#" />
+    </div>
+    <div class="text_container">Hi! Would you like to Login?</div>
+    <div class="text_container error">{{errorMsg}}</div>
+    <form class="form">
+        <div>User Name:</div>
+        <input type="text" name="username" [(ngModel)]="login.UserName" placeholder="Enter your username" />
+        <div>Password: </div>
+        <input type="password" name="password" [(ngModel)]="login.Password" placeholder="Enter your password" />
+        <div id="forgot">
+            <span>Forgot Password?</span>
+        </div>
+    </form>
+    <div class="btn_container">
+<<<<<<< HEAD
+        <div id="logIn" class="btn" (click)="Login()">
+            <span>Let's Log In</span>
+        </div>
+        <div id="new" class="btn">
+            <a [routerLink]="['/Signup']"><span>Hi! i'm new</span></a>
+=======
+        <div id="logIn">
+            <span>Let's Log In</span>
+        </div>
+        <div id="new">
+            <span>Hi! i'm new</span>
+>>>>>>> fabbab6d0a69bee8645b17575f4c9f7494b098b9
+        </div>
+    </div>
+    <div class="footer">
+        <div class="footer_text ">Log In easily with social</div>
+        <div class="footer_btn_container">
+            <div class="footer_btn footer_gmail_container"><div class="footer_gmail"></div></div>
+            <div class="footer_btn footer_facebook_container"><div class="footer_facebook"></div></div>
+        </div>
+    </div>
+</div>

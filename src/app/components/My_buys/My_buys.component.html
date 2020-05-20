@@ -1,0 +1,24 @@
+<div class="background"></div>
+<div class="main_container">
+    <div class="top">
+        <Menu style="width: 92%;"></Menu>
+        <div class="header">
+            <div class="main_title baloo-font">{{__my_buys_title}}</div>
+            <div class="sub_title">{{__my_buys_subtitle}}</div>
+            <input class="product_input" type="text" placeholder="{{__search_item}}" [(ngModel)]="filter"/>
+        </div>
+        <div class="clear_border"></div>
+    </div>
+    <div class="list_container">
+        <div class="item" *ngFor="let item of items | BuysFilter:filter">
+            <img class="picture" [src]="item.img"  [routerLink]="['/Deal',item.id]"/>
+            <img class="specialist" [src]="item.specImg"  [routerLink]="['/My_hi']"/>
+            <div class="txt_container">
+                <div class="description" [routerLink]="['/Deal',item.id]">{{item.description}}</div>
+                <div class="site">{{item.site}}</div>
+                <div class="date">{{__date}}: <span>{{item.date | date :'dd/MM/yyyy' }}</span></div>
+                <span class="glyphicon arrow" [routerLink]="['/Deal',item.id]">&#xe080;</span>
+            </div>
+        </div>
+    </div>
+</div>

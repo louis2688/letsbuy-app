@@ -1,0 +1,5 @@
+{
+    "prud_server" : "https://api.hiletsbuy.com/service/api/",
+    "auth_server" : "https://api.hiletsbuy.com/auth/",
+    "sendbird" : "FA06F9B4-F797-4551-85BF-6F00008CED49"
+}

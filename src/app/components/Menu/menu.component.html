@@ -1,0 +1,34 @@
+<div [class]="menuBg ? 'showBg' : '' " style="float: left;">
+    <img *ngIf="!hideBack" class="back" (click)="GoBack()" src="./assets/images/back.png" alt="#" />
+</div>
+<div [class]="menuBg ? 'showBg' : '' " style="float: right;">
+    <img *ngIf="!hideMenu" id="menu_icon" [class]="smallSize? 'menu_icon smallSize' :'menu_icon' "
+        src="./assets/images/Rectangle.png" alt="#" (click)="toogleMenu()" />
+</div>
+<div [class]="isOpen ? 'menu_container open' : 'menu_container' ">
+    <span class="title baloo-font">{{__left_menu_title}}</span>
+    <span (click)="toogleMenu()" id="exit">
+        <img src="./assets/images/Rectangle.png" />
+    </span>
+    <br />
+    <div class="btn_container">
+        <!-- <div class="menu_btn" [routerLink]="['/Major']"> Home </div> -->
+        <div class="menu_btn" [routerLink]="['/My_sells']" *ngIf="isSpecialist"> My Money </div>
+        <div class="menu_btn" [routerLink]="['/About_us']"> About us </div>
+        <div class="menu_btn" [routerLink]="['/Search_specialist']">{{__left_menu_btn4}}</div>
+        <!-- <div class="menu_btn" [routerLink]="['/Search_product']">{{__left_menu_btn5}}</div> -->
+        <div class="menu_btn" [routerLink]="['/My_chats']" *ngIf="!isGuest"> {{__left_menu_btn2}}</div>
+        <div class="menu_btn" [routerLink]="['/Wishlist']" *ngIf="!isGuest"> Wish list</div>
+        <div class="menu_btn" [routerLink]="['/Hi_info']" *ngIf="!isGuest">My info</div>
+        <div class="menu_btn" [routerLink]="['/Hi_info','setting']" *ngIf="!isGuest">Settings</div>
+        <div class="menu_btn" (click)="OpenShare()">Invite friend</div>
+        <div class="menu_btn" [routerLink]="['/Contact_us']">Conect us</div>
+        <hr />
+        <div class="menu_btn" *ngIf="isSpecialist && !isBlockedAdviser" [routerLink]="['/My_links']">
+            {{__left_menu_btn7}}</div>
+        <div class="menu_btn" *ngIf="isSpecialist && !isBlockedAdviser" [routerLink]="['/My_hi']">Update Blog</div>
+        <div class="menu_btn" [routerLink]="['/Signin']" *ngIf="isGuest"> LogIn </div>
+    </div>
+</div>
+
+<Pop_share></Pop_share>

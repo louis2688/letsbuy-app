@@ -1,0 +1,52 @@
+#iphone_bar_placeholder {
+    width: 100%;
+    height: 100px;
+}
+
+.main-body{
+    max-width: 768px;
+    margin: 0px auto;
+}
+
+
+
+DesktopMenu,.backgroundAll {
+    display: none;
+
+}
+
+@media (min-width: 1000px) {
+    .router-outlet-container {
+        margin: auto;
+        max-width: 600px;
+    }
+    DesktopMenu,Menu{
+        display:block;
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        width: 100%;
+    }
+
+    DesktopMenu{
+        z-index: 1000;
+    }
+
+    .backgroundAll{
+        background-image: url("../assets/images/BGopening.png");
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        z-index: -100;
+        background-size: cover;
+    }
+
+    .main-body{
+        margin-top: 59.5px;
+    }
+
+
+}

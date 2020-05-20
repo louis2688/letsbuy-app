@@ -1,0 +1,11 @@
+<form class="edit_account">
+    <div class="border"></div>
+
+    <input class="field_input" placeholder="First name" [(ngModel)]="bank.Bank" name="bank" type="text" /><br />
+    <input class="field_input" placeholder="Last name" [(ngModel)]="bank.Branch" name="branch" type="text" /><br />
+    <input class="field_input" placeholder="Paypal account (email)" [(ngModel)]="bank.Account" name="account"  type="email" /><br />
+    <input class="field_input" placeholder="Phone" [(ngModel)]="bank.Phone" name="account.Phone"  type="tel" /><br />
+    <input class="field_input" placeholder="Address" [(ngModel)]="bank.Address" name="account.Address"  type="email" /><br />
+
+    <span class="form_btn" (click)="Save()">{{btn_text}}</span><br />
+</form>

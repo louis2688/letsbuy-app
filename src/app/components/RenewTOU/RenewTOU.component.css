@@ -1,0 +1,143 @@
+﻿.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #f5f5f6;
+    background-size: cover;
+    z-index: -1;
+}
+
+.main_container {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+.header {
+    padding: 5%;
+}
+
+.title {
+    font-size: 5vmin;
+    font-size: var(--main_font_size-);
+}
+
+.subTitle {
+    text-align: center;
+    font-size: var(--second_font_size-);
+    color: lightgray;
+}
+
+Menu {
+    position: absolute;
+    top: 3vmin;
+    left: 4%;
+    margin: 0;
+    padding: 0;
+}
+
+.content {
+    width: 92%;
+    margin: 4% auto;
+    background-color: white;
+    border-radius: 20px;
+    padding: 4%;
+}
+
+.txt_left {
+    text-align: left;
+    color: lightgray;
+    margin: 4% 0;
+}
+
+.next_step {
+    background: linear-gradient(to bottom, #9a18ff, #8418af);
+    margin: 3% auto;
+    margin-bottom: 0;
+    width: 45%;
+    padding: 4% 0;
+    color: white;
+    text-align: center;
+    border-radius: 50px;
+}
+
+    .next_step.disabled {
+        background: linear-gradient(to bottom, #979393, #413d3d);
+    }
+
+.container {
+    position: relative;
+    padding: 0 15%;
+    margin: 15px 0;
+    margin-left: 10%;
+    cursor: pointer;
+    font-size: var(--main_font_size-);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    background-color: #eee;
+}
+
+.container:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.container > input {
+    display: none;
+}
+
+.container .checkmark:after {
+    right: 5%;
+    top: -30%;
+    width: 70%;
+    height: 110%;
+    background-image: url("../../../assets/images/V.png");
+    background-size: cover;
+    overflow: visible;
+}
+
+.textCondition {
+    width: 100%;
+    overflow: auto;
+    word-break: break-all;
+    text-align: left;
+    max-height: 258PX;
+    padding: 5%;
+    border: 0;
+    border-radius: 20px;
+    font-size: var(--second_font_size-);
+    background-color: #f0f1f1;
+}
+
+@media (min-width: 1000px) {
+    .background {
+        max-width: 600px;
+        margin: auto;
+    } 
+    .container{
+        width:200px;
+        padding:0;
+    }
+}

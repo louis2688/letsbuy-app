@@ -1,0 +1,58 @@
+﻿<div class="main_container ">
+    <div class="top">
+        <Menu style="width: 92%;"></Menu>
+        <!-- <Logo></Logo> -->
+        <div class="header">
+            <div class="main_title baloo-font">Specialist Search result</div>
+            <div class="sub_title">Shopping is coming</div>
+            <img class="logo" src="./assets/images/find_specialist.png" alt="#" />
+        </div>
+        <div class="bar_container">
+            <div [ngClass]="filter == 'rate'? 'divider active' : 'divider' " (click)="Sort('rate')">Srot By Rate</div>
+            <div [ngClass]="filter == 'sales'? 'divider active' : 'divider' " (click)="Sort('sales')">Sort By Sales</div>
+        </div>
+        <div class="clear_border"></div>
+    </div>
+    <div class="list_container">
+        <div *ngFor="let q of result | queryResultOrder:filter" class="chat">
+            <img class="picture " [src]="q.image | promiseImageSrc" (error)="DefultImage($event)" />
+            <Follow *ngIf="!isGuest" class="follow" [isFollow]="q.isFavorite" (click)="SetFavorite(q)"></Follow>
+            <div class="clear ">
+                <div [ngClass]="(q.isOnline == true) ? 'available' : 'available off'"></div>
+            </div>
+            <div class="container_txt " (click)="Go2Blog(q.id)" >
+                <div class="name">{{q.name}}</div>
+                <div class="rate">
+                    <div class="rating ">{{q.ratesAvg}}</div>
+                    <div class="star star1">
+                        <img class="empty" src="./assets/images/1Star.png" />
+                        <img class="full" [style.clip]="q.ratesAvg | clipSafe : 1" src="./assets/images/1StarFull.png" />
+                    </div>
+                    <div class="star star2">
+                        <img class="empty" src="./assets/images/1Star.png" />
+                        <img class="full" [style.clip]="q.ratesAvg | clipSafe : 2" src="./assets/images/1StarFull.png" />
+                    </div>
+                    <div class="star star3 ">
+                        <img class="empty" src="./assets/images/1Star.png" />
+                        <img class="full" [style.clip]="q.ratesAvg | clipSafe : 3" src="./assets/images/1StarFull.png" />
+                    </div>
+                    <div class="star star4 ">
+                        <img class="empty" src="./assets/images/1Star.png" />
+                        <img class="full" [style.clip]="q.ratesAvg | clipSafe : 4" src="./assets/images/1StarFull.png" />
+                    </div>
+                    <div class="star star5 ">
+                        <img class="empty" src="./assets/images/1Star.png" />
+                        <img class="full" [style.clip]="q.ratesAvg | clipSafe : 5" src="./assets/images/1StarFull.png" />
+                    </div>
+                </div>
+                <div class="clear_float"></div>
+                <div class="Specialities">Specialities: {{q.categories | maxWidth : 15}} </div>
+            </div>
+            <div class="sales "><span>{{q.sales}}</span> sales</div>
+            <span class="go2chat" (click)="Go2Chat(q.id)" >Chat</span>
+        </div>
+
+    </div>
+    <Toast></Toast>
+    <Pop_message></Pop_message>
+</div>

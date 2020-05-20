@@ -1,0 +1,142 @@
+.background {
+    background: linear-gradient(#fcfcfc,#ebeced);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width:100%;
+    z-index:-1;
+}
+
+.main_container {
+    width: 100%;
+    height: 100%;
+}
+
+.top {
+    width: 100%;
+    padding-top: 6vmin;
+    text-align: center;
+}
+
+Menu {
+    position: absolute;
+    top: 2%;
+    left: 4%;
+    margin: 0;
+    padding: 0;
+}
+.main_title {
+    font-size: var(--main_font_size-);
+}
+
+.sub_title {
+    font-size: var(--second_font_size-);
+    color: var(--font_color-);
+    margin: 2% 0;
+}
+
+.clear{
+    clear:both;
+    content:"";
+}
+
+.dividers{
+    width:90%;
+    margin:5vmin auto;
+}
+
+.divider {
+    text-align: center;
+    padding: 3vmin 0 7vmin 0;
+    float: left;
+    width: 31.3%;
+    margin: 0 1%;
+    background: #9ca0aa;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+.tab_checked.divider {
+    background: white;
+}
+.list_container{
+    position:relative;
+    width:88%;
+    background:white;
+    padding:5vmin 3vmin;
+    border-radius:20px;
+    margin:-9vmin auto;
+}
+.item{
+    border-radius:30px;
+    padding: 0px 5px 0 37px;
+    width:90%;
+    margin:3vmin auto;
+    border: 1px solid lightgray;
+    min-height: 38px;
+}
+.item > img, .item > div >img{
+    float : left;
+    margin-right: 3px;
+    margin-left: -37px;
+}
+
+.icon{
+    width:10vmin;
+}
+.answer {
+    transform: scaleY(0);
+    transform-origin: top;
+    max-height: 0px;
+    margin:0;
+    transition: margin 1s, max-height 0.5s ease-out,transform 1s ease;
+    
+    color: var(--font_color-);
+    overflow: hidden;
+}
+    .answer.open {
+        margin: 3vmin;
+        transform: scaleY(1);
+        max-height: 200px;
+        transition: max-height 1s ease-in;
+    }
+
+.contact_us{
+    background:var(--BG1_blue-);
+    padding:2%;
+    text-align:center;
+    border-radius:30px;
+    color:white;
+    font-size:var(--second_font_size-);
+    float:right;
+}
+.txt {
+    float: left;
+    font-size: var(--second_font_size-);
+    margin-top:2vmin;
+}
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 5vmin;
+}
+
+
+@media(orientation:landscape) {
+    .footer {
+        position: relative;
+        margin-top:8vmin;
+        width:100%;
+
+    }
+}
+@media (min-width: 1000px) {
+    .background{
+        margin: auto;
+        max-width: 600px;
+    }
+    .icon {
+        width: 6vmin;
+    }
+}

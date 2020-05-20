@@ -1,0 +1,32 @@
+.content {
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: fit-content;
+    max-width: 70%;
+    min-height: 10px;
+    background-color: rgba(0,0,0,0.7);
+    color: white;
+    margin: 0 auto;
+    z-index: 1001;
+    transform: translate(0,150%);
+    -ms-transform: translate(0,150%);
+    -webkit-transform: translate(0,150%);
+    -moz-transform: translate(0,150%);
+    -o-transform: translate(0,150%);
+    transition: transform 1.5s;
+    padding: 5px 10px;
+    border-radius: 30px;
+    box-shadow: 0px 0px 10px grey;
+}
+
+
+    .content.show {
+        transform: translate(0,-150%);
+        -ms-transform: translate(0,-150%);
+        -webkit-transform: translate(0,-150%);
+        -moz-transform: translate(0,-150%);
+        -o-transform: translate(0,-150%);
+    }

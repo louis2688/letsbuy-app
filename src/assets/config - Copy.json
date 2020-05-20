@@ -1,0 +1,5 @@
+{
+    "prud_server" : "https://storege.tzurtech.co.il/letsbuyresources2/api/",
+    "auth_server" : "https://storege.tzurtech.co.il/LetsBuyAuth2/",
+    "sendbird" : "FA06F9B4-F797-4551-85BF-6F00008CED49"
+}

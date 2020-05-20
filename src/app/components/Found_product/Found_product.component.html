@@ -1,0 +1,54 @@
+﻿<div class="background"></div>
+<div class="main_container">
+    <div class="top">
+        <Menu style="width: 92%;"></Menu>
+        <!-- <Logo></Logo> -->
+        <div class="header">
+            <div class="main_title baloo-font">{{__found_product_title}}</div>
+            <div class="sub_title">{{__found_product_subtitle}}</div>
+            <img class="logo" src="./assets/images/find_product.png" alt="#" />
+        </div>
+        <div class="bar_container">
+            <div [class]="filter=='rate' ? 'divider1 tab_checkd' : 'divider1'" (click)="Sort('rate',1)">{{__sort_by_rate}}</div>
+            <div [class]="filter=='sales'? 'divider2 tab_checkd' : 'divider2'" (click)="Sort('sales',2)">{{__sort_by_sales}}</div>
+            
+        </div>
+        <div class="clear_border"></div>
+    </div>
+    <div class="list_container">
+        <div class="result" *ngFor="let i of ItemList | productsResultOrder:filter">
+            <div class="BG_image allowed_toggle" (click)="focusOnOff(i,$event,this)" [style.backgroundImage]="GetProductBG(i.imageUrl)">
+                <div class="focus allowed_toggle" *ngIf="i.isFoucs" >
+                    <div class="title allowed_toggle" >{{i.productDesc}}</div>
+                    <div class="SiteName allowed_toggle">{{i.siteName}}</div>
+                    <div class="price">
+                        <Bag class="clickable" [item_id]="i.id" [isInWishList]="i.isInWishList" (click)="ToggleWishList(i)"></Bag>
+                    </div>
+
+                    <div class="clear"></div>
+                    <div class="btn_container">
+                        <div class="chat">
+                            <img class="chat_bg clickable" src="./assets/images/chat_now.png" />
+                            <div class="chat_txt clickable" (click)="Go2Chat(i.specID)">{{__chat}}</div>
+                            <Follow class="follow clickable" [spec_id]="i.specID" [isFollow]="i.isFollow" (click)="ToggleIsFollow(i)"></Follow>
+                        </div>
+                        <div class="buy_now baloo-font">
+                            <a class="clickable" *ngIf="!mobilemode" [target]="'_blank'" [href]="'./GoToLink/' + i.id">{{__buy_now}}</a>
+                            <a class="clickable" *ngIf="mobilemode" [target]="'_self'" [href]="'./GoToLink/' + i.id">{{__buy_now}}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="picture clickable" [routerLink]="['/My_Hi',i.specID]" [style.backgroundImage]="'url('+ i.ProfileImageUrl +')'"> </div>
+            </div>
+            <div class="footer">
+                <div class="footer_content">
+                <div class="available" *ngIf="i.specOnline"></div>
+                    <span class="clickable" [routerLink]="['/My_Hi',i.specID]"> {{i.specName}}</span> 
+                    <span class="rank clickable" [routerLink]="['/Reviews',i.specID]">{{i.specRate == 0 ? "" : i.specRate}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <Pop_message [_msg]="__msg"></Pop_message>
+    <Toast></Toast>
+</div>

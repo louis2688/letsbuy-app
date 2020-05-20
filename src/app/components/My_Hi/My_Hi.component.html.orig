@@ -1,0 +1,155 @@
+<div class="main_container" *ngIf="!isLoading">
+    <div class="background">
+        <div class="top" [style.backgroundImage]="GetBackgroundIMage() | image64SecureToStyle">
+            <div class="loader_container BG" *ngIf="loadingBG">
+                <div class="loadersmall BG"></div>
+            </div>
+            <Menu menuBg="true"></Menu>
+            <div class="specialist_pic_container">
+                <div class="relative_container">
+                    <div class="loader_container" *ngIf="loadingPicture">
+                        <div class="loadersmall"></div>
+                    </div>
+                    <img class="specialist_pic" [src]="currentBlog.user.picture | DefaultImageProfilFilter" />
+                    <Follow *ngIf="!editMode" [isFollow]="currentBlog.user.isFollow" (click)="ToggleIsFollow()"></Follow>
+                    <div *ngIf="editMode" class="camera" (click)="SelectProfileImageDialog()"></div>
+                    <input #imageProfileUpload type="file" (change)="SelectProfileImage()" accept="image/*" capture style="display:none" />
+                </div>
+            </div>
+            <div *ngIf="!editMode" class="go2chat" (click)="Go2Chat(currentBlog.user.id)">
+                <img src="../../../assets/images/chat_now.png" />
+                <div class="btn_txt">{{__chat_now}}</div>
+            </div>
+            <div class="sales_details">
+                <span *ngIf="(currentBlog.user.totalSells > 0)">
+                    <span>{{currentBlog.user.totalSells}}</span> {{__sales_info_line1}}<br />
+                    <span>{{currentBlog.user.sumSalesInLastMonth}}</span> {{__sales_info_line2}}<br />
+                    {{__sales_info_line3_part1}} <span>{{currentBlog.user.numDaysFromLastSale}}</span> {{__sales_info_line3_part2}}
+                </span>
+                <span *ngIf="currentBlog.user.totalSells <= 0">
+                    {{__sales_info_line1_default}}<br />
+                    {{__sales_info_line2_default}}<br>
+                    <span style="text-decoration:underline;" [routerLink]="['/Hi_info','setting']">
+                        <strong>{{__sales_info_line3_default}}</strong>
+                    </span>
+                </span>
+            </div>
+            <div *ngIf="editMode" class="camera camera2" (click)="SelectBGImageDialog()"></div>
+            <input #imageBGUpload type="file" (change)="SelectBGImage()" style="display:none" />
+        </div>
+        <div class="specialist_details">
+            <div class="name baloo-font">{{currentBlog.user.fname}} {{currentBlog.user.lname}}</div>
+            <div [class]="(currentBlog.user.rate == 0) ? 'rate defaultMode' : 'rate'" [routerLink]="['/Reviews',currentBlog.user.id]">
+                <div class="rating" *ngIf="!(currentBlog.user.rate == 0)">{{currentBlog.user.rate}}</div>
+                <span class="rating defaultMode" *ngIf="(currentBlog.user.rate == 0)">
+                    no ranking<br />
+                    is availabe
+                </span>
+                <div class="star star1">
+                    <img class="empty" src="../../../assets/images/1Star.png" />
+                    <img class="full" [style.clip]="currentBlog.user.rate | clipSafe : 1" src="../../../assets/images/1StarFull.png" />
+                </div>
+                <div class="star star2">
+                    <img class="empty" src="../../../assets/images/1Star.png" />
+                    <img class="full" [style.clip]="currentBlog.user.rate | clipSafe : 2" src="../../../assets/images/1StarFull.png" />
+                </div>
+                <div class="star star3">
+                    <img class="empty" src="../../../assets/images/1Star.png" />
+                    <img class="full" [style.clip]="currentBlog.user.rate | clipSafe : 3" src="../../../assets/images/1StarFull.png" />
+                </div>
+                <div class="star star4">
+                    <img class="empty" src="../../../assets/images/1Star.png" />
+                    <img class="full" [style.clip]="currentBlog.user.rate | clipSafe : 4" src="../../../assets/images/1StarFull.png" />
+                </div>
+                <div class="star star5">
+                    <img class="empty" src="../../../assets/images/1Star.png" />
+                    <img class="full" [style.clip]="currentBlog.user.rate | clipSafe : 5" src="../../../assets/images/1StarFull.png" />
+                </div>
+            </div>
+            <div class="clear"></div>
+            <span *ngIf="editMode" class="edit_btn" [routerLink]="['/Hi_info','setting']">{{__edit}}</span>
+            <div [class]="showMoreSpec ? 'specialities expended' : 'specialities' " *ngIf="(currentBlog.user.specialitiesList.length > 0)">
+                {{__specialities}}: <span *ngFor="let s of currentBlog.user.specialitiesList"> {{s.name || s.Name}}, </span>
+                <br />
+            </div>
+            <span *ngIf="(currentBlog.user.specialitiesList.length > 0)" class="more_specs" (click)="toggleMoreSpec()">{{__more_spec}}...<br /></span>
+            <div class="specialities" *ngIf="currentBlog.canEdit &&(currentBlog.user.specialitiesList.length == 0)">
+                {{__specialities_line1_default}}
+                <br />{{__specialities_line2_default}}
+            </div>
+            <span *ngIf="editMode" class="edit_btn" [routerLink]="['/Hi_info','setting']">{{__edit}}</span>
+            <div class="languages">
+                {{__languages}}: <span *ngFor="let l of currentBlog.user.languagesList"> {{l.DispalyName}}, </span>
+            </div>
+        </div>
+        <div class="products_container" *ngIf="(currentBlog.linkPostList.length > 0)">
+            <div class="product" *ngFor="let link of currentBlog.linkPostList | ShortPinnedItems">
+                <img class="pin" *ngIf="editMode && !link.isPin" src="../../../assets/images/pin.png" (click)="TogglePin(link)" />
+                <img class="pin" *ngIf="editMode && link.isPin" src="../../../assets/images/full_pin.png" (click)="TogglePin(link)" />
+                <img class="product_img allowed_toggle" [src]="link.itemImg" (click)="focusOnOff(link,$event,this)" />
+                <div class="touched allowed_toggle" *ngIf="link.isTouched" (click)="focusOnOff(link,$event,this)">
+                    <!--<img class="pin" *ngIf="editMode" src="../../../assets/images/full_pin.png" />-->
+                    <div class="site">{{link.site}}</div>
+                   
+                    <Bag *ngIf="!editMode" [isInWishList]="link.isInWish" [item_id]="link.id"></Bag>
+                    <div *ngIf="!editMode" class="btn_container">
+                        <span class="go2post" [routerLink]="['/Blog_post',link.id]">{{__full_post}}</span>
+                        <span class="go2post">{{__buy_now}}</span>
+                    </div>
+                    <div class="desc">{{link.itemDescription}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="products_container defaultMode" *ngIf="currentBlog.canEdit && currentBlog.linkPostList.length == 0">
+            {{__add_blog_default_line1}},<br />
+            {{__add_blog_default_line2}}!
+            <div class="add_blog" (click)="OpenAddPost()">{{__add_blog_default_btn}}</div>
+        </div>
+
+        <div class="blog_title">{{(currentBlog.canEdit && (!currentBlog.blogTitle || currentBlog.blogTitle == ""))? 'Edit your blog title' : currentBlog.blogTitle}}<span *ngIf="editMode" class="edit_btn non_float" (click)="togglePopup('title')">{{__edit}}</span></div>
+        <div class="blog_desc">
+            {{(currentBlog.canEdit && (!currentBlog.blogDesc || currentBlog.blogDesc == ""))? 'Edit your blog description' : currentBlog.blogDesc}}<span *ngIf="editMode" class="edit_btn" (click)="togglePopup('desc')">{{__edit}}</span>
+        </div>
+    </div>
+    <div class="blogs_container" *ngIf="(currentBlog.PostList.length > 0)">
+        <img *ngIf="currentBlog.canEdit && currentBlog.canEdit == true" class="post_img" src="../../../assets/images/prezent_with_arrow.png" (click)="OpenAddPost()" />
+        <img class="post_img" *ngFor="let post of currentBlog.PostList" [src]="post.image | DefaultImagePostFilter"
+             [routerLink]="editMode? ['/New_blog',post.id] : ['/Blog_post',post.id] " />
+        <div class="clear"></div>
+    </div>
+    <!--<div class="blogs_container defaultMode" *ngIf="canEdit">
+        <div class="add img">
+            <img src="../../../assets/images/prezent_with_arrow.png" [routerLink]="['/Add_post']" />
+        </div>
+    </div>-->
+
+    <div class="popup" *ngIf="showEditTitlePopup">
+        <div class="edit_text_container">
+            <img class="exitPopup" src="../../../assets/images/close_icon.png" (click)="togglePopup('title')" />
+            <div>Edit your blog title</div>
+            <textarea class="txt_area" dir="auto" contenteditable="true" [(ngModel)]="inputTitlePopup"></textarea>
+            <div class="post_btn baloo-font" (click)="PostBlog('title')">Update</div>
+        </div>
+    </div>
+    <div class="popup" *ngIf="showEditBlogDescPopup">
+        <div class="edit_text_container">
+            <img class="exitPopup" src="../../../assets/images/close_icon.png" (click)="togglePopup('desc')" />
+            <div>Edit your blog description</div>
+            <textarea class="txt_area" dir="auto" contenteditable="true" [(ngModel)]="inputDescPopup"></textarea>
+            <div class="post_btn baloo-font" (click)="PostBlog('desc')">Update</div>
+        </div>
+    </div>
+    <Toast></Toast>
+    <Edit_post *ngIf="isEditPostOpen" [postid]="editPostId" (SavedChanges)="RefreshBlog()" (Finish)="Close()"></Edit_post>
+    <Add_post *ngIf="isAddPostOpen" (SavedChanges)="RefreshBlog()" (Finish)="Close()"></Add_post>
+</div>
+
+<div class="main_container loading" *ngIf="isLoading">
+    <Menu [hideMenu]="true"></Menu>
+    <br />
+    <br />
+    <loadingBar></loadingBar>
+    <Pop_message [_isShow]="blogNotFound" [_msg]="'Blog not found'" [_ok_msg]="'Go To Chat'" 
+                 [_target]="Chat_speciality" [_routeParam]="_id" [_not_ok_msg]="'Back'" [_backOn_not_ok_btn]="true"></Pop_message>
+</div>
+

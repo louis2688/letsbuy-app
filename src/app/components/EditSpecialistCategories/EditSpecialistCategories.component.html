@@ -1,0 +1,33 @@
+<div class="EditSpecialistCategories">
+    <img class="exit" src="./assets/images/close_icon.png" #childExit  (click)="closePopup()"/>
+    <div class="title">{{__EditSpecialistCategories_title}}</div>
+
+    <div class="list_container">
+        <div class="item" *ngFor="let i of selectedSubCategories">
+            <div class="category">
+                <img class="icon" (click)="click(i)" [src]="getSrcByState(i)" />
+                <span class="category_name">{{i.name}}</span>
+
+                <div class="checkBox_container">
+                    <label class="container">
+                       {{__select_all}}
+                        <input [(ngModel)]="i.chacked" (change)="SelectUnSelctAll(i)" type="checkbox" />
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+            </div>
+            <div [class]="i.isOpen ? 'sub_categories open': 'sub_categories'">
+                <div class="border"></div>
+                <div class="checkBox_container float" *ngFor="let j of i.sub_categories">
+                    <label class="container">
+                        {{j.name}}
+                        <input type="checkbox"  [(ngModel)]="j.chacked"/>
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+    <div class="update" (click)="update()">{{__update_btn}}</div>
+</div>

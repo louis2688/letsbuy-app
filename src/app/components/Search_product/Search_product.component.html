@@ -1,0 +1,84 @@
+<div class="background"></div>
+<div class="main_container">
+    <Menu style="width: 92%;"></Menu>
+    <!-- <Logo></Logo> -->
+    <div class="top">
+        <div class="header">
+            <div class="main_title baloo-font">{{__search_product_title}}</div>
+            <div class="sub_title">{{__search_product_subtitle}}</div>
+            <img class="logo" src="./assets/images/find_product.png" alt="#" />
+        </div>
+    </div>
+    <div class="step_container">
+        <div class="step1">
+            <div class="catagory ">{{__catagory}}</div>
+            <Select_cmp #categotys class="select"
+                        [selectedItemstring]="categoryPlaceHolder"
+                        [innerPadding]="'5px'"
+                        [title]="__input_catagory"
+                        [bg_white]="true"
+                        (openClosePopupEvent)="CalcSubCategories($event)">
+            </Select_cmp>
+        </div>
+        <div *ngIf="selectedCategory != '0'" class="step2">
+            <div class="checkBox_container">
+                <div *ngFor="let scat of selectedSubCategories" class="col">
+                    <label class="container">
+                        {{scat.name}}
+                        <input type="checkbox" [(ngModel)]="scat.chacked" />
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+            </div>
+            <div class="clear"></div>
+            <div class="selectAll" (click)="SelectAllSubCat()">{{__select_all}}</div>
+            <div class="Online_Specialists">
+                <div class="relative_container">
+                    <img class="pic" src="./assets/images/follow.png" alt="#" />
+                    <div class="available off"></div>
+                    <div class="txt">
+                        Only Products from Specialists I follow
+                    </div>
+                    <label class="container right">
+                        <input type="checkbox" [(ngModel)]="_q.favorite" />
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+            </div>
+            <div class="Online_Specialists">
+                <div class="relative_container">
+                    <img class="pic person_circel" src="./assets/images/person.png" alt="#" />
+                    <div class="available"></div>
+                    <div class="txt">
+                        Only Products from
+                        Online Specialists
+                    </div>
+                    <label class="container right">
+                        <input type="checkbox" [(ngModel)]="_q.online" />
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+            </div>
+            <div class="btn_container">
+                <div class="replace2step3">
+                    <div *ngIf="!moreOptions" class="less_options" (click)="MoreOptions()">{{__more_search_options}}</div>
+                </div>
+                <div [class]="'step3' + (moreOptions ? '':' hidden')">
+                    <Select_cmp #counries class="select"
+                                [selectedItemstring]="locationPlaceHolder"
+                                [innerPadding]="'5px'"
+                                [title]="__change_loc"
+                                [bg_white]="true"
+                                (openClosePopupEvent)="ChoosenLocation($event)">
+                    </Select_cmp>
+
+                    <div class="less_options" (click)="MoreOptions()">{{__less_search_options}}</div>
+                </div>
+                <div class="next_step BG_yellow baloo-font" (click)="Search()">
+                    <span>{{__find_btn}}>>></span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,252 @@
+.background {
+    background: linear-gradient(#fcfcfc,#ebeced);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index:-1;
+}
+
+.main_container {
+    width: 100%;
+    height: 100%;
+}
+
+.top {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding-top:5vmin;
+    padding-bottom:7vmin;
+    text-align: center;
+    z-index: 100;
+    background-color: #fcfcfc;
+    background: white;
+}
+Menu {
+    position: absolute;
+    top: 1vmin;
+    left: 4%;
+    margin: 0;
+    padding: 0;
+}
+.main_title {
+    font-size: var(--main_font_size-);
+    text-align:center;
+}
+.scroll_container {
+    margin-top: 15vmin;
+    overflow-y: scroll;
+}
+.dividers, .picture_container {
+    width: 90%;
+    margin: 2% auto;
+}
+
+.divider1,
+.divider2,
+.divider3{
+    width: 33%;
+    padding: 15px 0;
+    text-align: center;
+    float: left;
+    font-size: var(--second_font_size-);
+    color: var(--font_color-);
+}
+.title{
+    font-size:var(--second_font_size-);
+    color:darkgray;
+}
+.period {
+    font-size: var(--second_font_size-);
+    color: black;
+}
+.profit {
+    font-size: var(--second_font_size-);
+    color: #2cd5d8;
+}
+.sales {
+    font-size: var(--third_font_size-);
+    color: lightgray;
+}
+.clear{
+    clear:both;
+    content:"";
+}
+.most_sellable, .most_profitable{
+    width:47%;
+    border-radius:10px;
+    background:var(--BG1_blue-);
+    position:relative;
+    float:left;
+    padding:10px;
+}
+.most_profitable{
+    float:right;
+}
+    .most_sellable > img,
+    .most_profitable > img {
+        width: 60%;
+        height:100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        border-bottom-left-radius: 10px;
+        border-top-left-radius: 10px;
+    }
+.txt_container {
+    width:40%;
+    text-align: center;
+    color: lightgray;
+    font-size: var(--second_font_size-);
+    float: right;
+    margin-right: -5px;
+} 
+.num_sales{
+    color:black;
+}
+
+.touched {
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:10;
+    width:100%;
+    height:100%;
+    border-radius:10px;
+    padding:10px 5px;
+    color:black;
+    background:white;
+    opacity:0.75;
+    font-size:var(--third_font_size-);
+}
+.profit_per_unit {
+    position: absolute;
+    bottom: 10px;
+    right: 5px;
+}
+.description {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3; /* number of lines to show */
+}
+.site{
+    margin:4% 0;
+}
+.price {
+    position: absolute;
+    bottom: 10px;
+    left: 5px;
+}
+.list_container {
+    width: 100%;
+    background: white;
+    padding: 2% 0;
+    margin-top: 4%;
+}
+.item {
+    width: 92%;
+    margin: 2% auto;
+    border: 1px solid lightgray;
+    border-radius: 20px;
+    position: relative;
+    padding:10px 4%;
+}
+.income{
+    color:black;
+    font-size:var(--name_font_size-);
+    margin:0 4%;
+}
+.from {
+    color: lightgray;
+    font-size: var(--third_font_size-);
+    margin: 0 4%;
+}
+.glyphicon {
+    position: absolute;
+    top: unset;
+    bottom: 35%;
+    right: 6%;
+    color: lightgray;
+    z-index: 100;
+}
+.glyphicon.glyphicon-chevron-up{
+    bottom:10%;
+} 
+
+.expanded_from {
+    margin-top: 5px;
+    position: relative;
+    transform: scaleY(0);
+    transform-origin: top;
+    max-height: 0px;
+    transition: margin 1s, max-height 0.5s ease-out,transform 1s ease;
+    overflow: hidden;
+}
+
+    .expanded_from.open {
+        transform: scaleY(1);
+        max-height: 200px;
+        transition: max-height 1s ease-in;
+    }
+
+.product_description {
+    color: black;
+    font-size: var(--medium_font_size-);
+    width: 100%;
+    display: inline-block;
+}
+.buyer_pic {
+    float:right;
+    max-width: 15vmin;
+    vertical-align:unset;
+    
+}
+.buyer {
+    margin: 0 2%;
+}
+.add_some {
+    float: right;
+    max-width: 7vmin;
+    margin-top: 4vmin;
+}
+.btn {
+    position: absolute;
+    bottom: 0;
+    padding: 0.7vmin 2.5vmin;
+    color: white;
+    font-size: var(--third_font_size-);
+    border-radius: 30px;
+}
+.chat{
+    background:var(--BG3_green-);
+    right:25vmin;
+}
+.link {
+    background: var(--BG1_blue-);
+    left: 40%;
+}
+::-webkit-scrollbar {
+    display: none;
+}
+@media(orientation:landscape){
+    .item {
+        padding: 10px 8%;
+        width:90%;
+    }
+}
+@media (min-width: 1000px) {
+    .background {
+        max-width: 600px;
+        margin: auto;
+    }
+    .top {
+        max-width: 600px;
+        margin: auto;
+        margin-top:62px;
+        padding:3vmin 0;
+    }
+}

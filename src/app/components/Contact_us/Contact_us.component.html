@@ -1,0 +1,37 @@
+﻿<div class="background"></div>
+<div class="main_container">
+    <div class="header">
+        <!-- <Logo></Logo> -->
+        <Menu style="width: 92%;"></Menu>
+        <div class="title baloo-font">{{__contact_us_title}}</div>
+        <div class="subTitle">{{__contact_us_subtitle}}?</div>
+    </div>
+    <div class="content">
+        <div class="alternative_container">
+            <div class="txt">
+               {{__static_txt_line1}}.<br />
+                {{__static_txt_line2}},<br />
+                {{__static_txt_line3}}:
+            </div>
+            <div class="btn about baloo-font" [routerLink]="['/About_us']">{{__aboutUs_btn}}</div>
+            <div class="btn faq baloo-font" [routerLink]="['/FAQ']">{{__faq_btn}}</div>
+            <div class="clear"></div>
+        </div>
+        <div class="contact_container">
+            <div class="txt">
+                {{__static_txt_line4}}?<br />{{__static_txt_line5}}:
+            </div>
+            <div class="name_mail" *ngIf="isGuest">
+                <input class="msg" type="text" placeholder="Write your name" [(ngModel)]="msg.name" />
+                <div class="text_container error">{{errorMsgName}}</div>
+                <input class="msg" type="email" placeholder="Insert your Email Address" [(ngModel)]="msg.email" />
+                <div class="text_container error">{{errorMsgEmail}}</div>
+            </div>
+            <textarea class="msg" rows="7" placeholder="{{__write_message}}..." [(ngModel)]="msg.msg"></textarea>
+            <div *ngIf="errorMsgMsg && errorMsgMsg.toString().length > 0" class="text_container alert alert-danger"><label>{{errorMsgMsg}}</label></div>
+            <div *ngIf="!isLoading && !isSent" class="next_step baloo-font" (click)="SendMsg()">{{__send_btn}}</div>
+            <div *ngIf="successMsg && successMsg.toString().length > 0" class="text_container alert alert-success"><label>{{successMsg}}</label></div>
+        </div>
+
+    </div>
+</div>

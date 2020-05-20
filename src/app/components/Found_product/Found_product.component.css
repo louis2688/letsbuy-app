@@ -1,0 +1,245 @@
+﻿.background {
+    background: linear-gradient(#fcfcfc,#ebeced);
+    position:fixed;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    z-index:-1;
+}
+.main_container {
+    width: 100%;
+    height: 100%;
+}
+.top {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    padding-top: 3%;
+    background: linear-gradient(#fcfcfc,#f7f8f8);
+    z-index: 1100;
+}
+Menu {
+    position: absolute;
+    top: 6%;
+    left: 4%;
+    margin: 0;
+    padding: 0;
+}
+.header {
+    text-align: center;
+    background-color: white;
+    border-radius: 20px;
+    width: 57%;
+    margin: 0 auto;
+    margin-bottom:2%;
+    border: 1px solid lightgrey;
+}
+
+.main_title {
+    font-size: var(--main_font_size-);
+}
+
+.sub_title {
+    font-size: var(--medium_font_size-);
+    color: var(--font_color-);
+}
+
+.logo {
+    width: 40%;
+}
+
+.bar_container {
+    width: 100%;
+    margin: 2% auto;
+}
+
+.divider1,
+.divider2 {
+    width: 49%;
+    padding: 5px;
+    text-align: center;
+    float: left;
+    font-size: var(--medium_font_size-);
+    color: black;
+    border-right: 1px solid #a7aab4;
+}
+
+.tab_checkd {
+    text-decoration: underline;
+}
+.divider2 {
+    border-right: 0;
+    border-left: 1px solid #a7aab4;
+}
+
+.clear_border {
+    clear: both;
+    background: var(--BG2_purple-);
+    height: 7px;
+}
+
+.list_container {
+    width: 100%;
+    overflow-y: scroll;
+    text-align:center;
+}
+
+.result{
+    width:160px;
+    border-radius:30px;
+    position:relative;
+    height:190px;
+    display:inline-block;
+    margin:8px;
+}
+.title {
+    height: 55px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+.BG_image {
+    background-size: cover;
+    background-position:center;
+    position: absolute;
+    width: 100%;
+    height: 80%;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+}
+.footer {
+    background-color: white;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    opacity: 1;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding:5.5%;
+}
+
+.available {
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: var(--BG3_green-);
+    opacity: 1;
+    float :left;
+    margin:2% 0 0 2%;
+}
+.footer_content {
+    text-align:center;
+}
+.rank{
+    color:var(--font_color-);
+    margin-left:10px;
+}
+.picture {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    bottom: -5%;
+    left: 10px;
+    z-index: 1;
+    background-size: cover;
+    background-position: center;
+}
+.focus {
+    background: rgba(255, 255, 255, 0.7);
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    padding-right: 5px;
+    text-align: left;
+}
+
+.price{
+    float:right;
+}
+
+
+    .clear {
+    clear: both;
+    content: "";
+}
+.btn_container{
+    float:right;
+    width:97px;
+    z-index:100;
+    margin-top: 5px;
+    z-index:5;
+}
+
+.chat {
+    color: white;
+    float:left;
+    margin-left: -10px;
+    z-index: 1000;
+    position:relative;
+}
+.chat_bg{
+    width:36px;
+    vertical-align:unset;
+    height:20px;
+    margin-right:12px;
+}
+.chat_txt {
+    position: absolute;
+    top: 3.5px;
+    left: 6px;
+    font-size: 0.7em;
+}
+.btn_container > img {
+    width: 20px;
+    float: left;
+    margin-left: 4px;
+}
+.follow {
+    position: absolute;
+    bottom: 5px;
+    right: -2px;
+    width: 23px;
+}
+bag {
+    width: 30px;
+    height:30px;
+    margin:0 5px;
+    margin-top: -5px;
+    float:right;
+}
+.buy_now {
+    background: var(--BG2_purple-);
+    color: white;
+    text-align: center;
+    padding: 4px 6px;
+    border-radius: 30px;
+    font-size: 0.7em;
+    float: left;
+    margin-left:7px;
+}
+    .buy_now > a {
+        color: white;
+    }
+
+.clickable {
+    cursor:pointer;
+}
+
+@media(orientation:landscape) {
+    .logo {
+        width: 20%;
+    }
+    Menu{
+        top:10%;
+    }
+}
+@media (min-width: 1000px) {
+    .background {
+        max-width: 600px;
+        margin: auto;
+    }
+    
+}

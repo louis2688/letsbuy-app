@@ -1,0 +1,28 @@
+<div class="main_container">
+    <div class="top">
+        <Menu style="width: 92%;"></Menu>
+        <!-- <Logo></Logo> -->
+        <div class="header">
+            <div class="main_title baloo-font">{{__sites_title}}</div>
+            <div class="sub_title">{{__sites_subtitle}}</div>
+            <input class="search_site" type="text" placeholder={{__lookfor_site}} [(ngModel)]="filter" />
+        </div>
+        <div class="clear_border"></div>
+    </div>
+    <div class="list_container">
+        <div class="item" *ngFor="let site of Items | SiteFilter:filter">
+            <Site_follow *ngIf="!isGuest" [isFollow]="site.isFavor" [site_id]="site.siteId"></Site_follow>
+            <div class="logo_container">
+                <img class="logo" [src]="site.logo" />
+            </div>
+            <div class="txt_container">
+                <div class="name">{{site.name}}</div>
+                <div class="description">{{site.description}}</div>
+                <div class="site">{{site.address}}</div>
+            </div>
+            <a class="to_site" *ngIf="!mobilemode" [target]="'_blank'" [href]="site.address">{{__go2site}}</a>
+            <a class="to_site" *ngIf="mobilemode" [href]="site.address | HybridLink" >{{__go2site}}</a>
+        </div>
+
+    </div>
+</div>

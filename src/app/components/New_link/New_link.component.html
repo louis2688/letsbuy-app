@@ -1,0 +1,51 @@
+<div class="background"></div>
+<div class="main_container" *ngIf="link && !isLoading" >
+    <div class="top">
+        <Menu [hideMenu]="true"></Menu>
+        <div class="main_title baloo-font">Your Link Info</div>
+    </div>
+    <div class="link_info">
+        <label>Link Name</label><br />
+        <input type="text" class="link_name" [(ngModel)]="link.description" placeholder="Wirte a short description" /><br />
+
+        <label>Choose Link Image</label><br />
+        <div class="img_container">
+            <img id="linkimage" class="link_img" [src]="link.picture | DefaultImageLinkFilter | image64Secure" (click)="OpenSelectDialog()" />
+            <input #imageLink type="file" (change)="SelectImageFromGallery()" style="display:none" />
+        </div>
+        <br />
+        <!-- Category -->
+        <Select_cmp #catSelector class="select"
+                    [selectedItemstring]="'Select category'"
+                    [selectedKey]="link.categoryID"
+                    [innerPadding]="'8px'"
+                    [title]="'Select category'"
+                    [bg_white]="false"
+                    (openClosePopupEvent)="SelectCategory($event)">
+        </Select_cmp>
+        <br />
+        <!-- <Select_cmp #folderSelector class="select"
+                    [selectedItemstring]="'Select folder'"
+                    [innerPadding]="'8px'"
+                    [title]="'Select folder'"
+                    [bg_white]="false"
+                    (openClosePopupEvent)="SelectFolder($event)">
+        </Select_cmp> -->
+        <br />
+        <div *ngIf="link.folderID == '-2'">
+            <label>New Folder name:</label><br />
+            <input type="text" class="link_name" [(ngModel)]="link.folderName" placeholder="My links" />
+        </div>
+
+
+    </div>
+    <div class="next_step baloo-font" (click)="AddLink()">{{isEdit ? 'Save Link' : 'Add Link >>>'}}</div>
+    <div class="next_step baloo-font" *ngIf="isEdit" (click)="DeleteLink()">Delete</div>
+</div>
+<div class="main_container loading" *ngIf="isLoading">
+    <Menu [hideMenu]="true"></Menu>
+    <br />
+    <br />
+    <loadingBar></loadingBar>
+</div>
+<Toast></Toast>

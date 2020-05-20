@@ -1,0 +1,126 @@
+﻿<div class="background"></div>
+<div class="chat_main_container">
+    <div [class]="'top ' + connectionStatus">
+        <Menu style="width: 92%;"></Menu>
+        <img class="picture" [routerLink]="['/My_Hi',chatUserId]" [src]="currentUser.picture | DefaultImageProfilFilter"
+            (error)="DefultImage($event)">
+
+        <div class="container_txt ">
+
+            <div class="name baloo-font" *ngIf="!currentUser.nickname" [routerLink]="['/My_Hi',chatUserId]">
+                {{currentUser.fname}}
+                {{currentUser.lname}}<span [class]="currentUser.isAvailable ? 'available' : 'available hidden'"></span>
+            </div>
+            <div class="name baloo-font" *ngIf="currentUser.nickname" [routerLink]="['/My_Hi',chatUserId]">
+                {{currentUser.nickname}}<span
+                    [class]="currentUser.isAvailable ? 'available' : 'available hidden'"></span></div>
+
+            <div class="rate" [routerLink]="['/Reviews',chatUserId]">
+                <div class="rating ">{{currentUser.rate}}</div>
+                <div class="star star1 ">
+                    <img class="empty" src="./assets/images/1Star.png" />
+                    <img class="full" [style.clip]="currentUser.rate | clipSafe : 1"
+                        src="./assets/images/1StarFull.png" />
+                </div>
+                <div class="star star2 ">
+                    <img class="empty" src="./assets/images/1Star.png" />
+                    <img class="full" [style.clip]="currentUser.rate | clipSafe : 2"
+                        src="./assets/images/1StarFull.png" />
+                </div>
+                <div class="star star3 ">
+                    <img class="empty" src="./assets/images/1Star.png" />
+                    <img class="full" [style.clip]="currentUser.rate | clipSafe : 3"
+                        src="./assets/images/1StarFull.png" />
+                </div>
+                <div class="star star4 ">
+                    <img class="empty" src="./assets/images/1Star.png" />
+                    <img class="full" [style.clip]="currentUser.rate | clipSafe : 4"
+                        src="./assets/images/1StarFull.png" />
+                </div>
+                <div class="star star5 ">
+                    <img class="empty" src="./assets/images/1Star.png" />
+                    <img class="full" [style.clip]="currentUser.rate | clipSafe : 5"
+                        src="./assets/images/1StarFull.png" />
+                </div>
+            </div>
+            <div class="clear"></div>
+            <div class="specialities" *ngIf="!isTyping">Specialities:
+                <span *ngFor="let s of currentUser.specialitiesList"> {{s.name || s.Name}}, </span>
+            </div>
+            <div *ngIf="isTyping" class="specialities">
+                tryping...
+            </div>
+        </div>
+        <div class="more hidden"><img src="./assets/images/more.png"></div>
+    </div>
+    <div #scrollContainer class="msg_container chat-container">
+        <div class="item message" *ngFor="let msg of msgList ; let i = index">
+            <div *ngIf="i == 0 ||  (msgList[i-1] && msg && IsDayPass(msgList[i-1].createdAt,msg.createdAt))">
+                <div class="clear"></div>
+                <span class="date_separate">{{GetDate(msg.createdAt)}}</span>
+                <div class="clear"></div>
+            </div>
+            <div dir="auto"
+                *ngIf="msg.messageType == 'user' && !(msg.customType == 'link' || msg.customType == 'waitForUpload.link' || msg.customType == 'href')"
+                [class]="(msg.sender || msg._sender).userId == chatUserId ? 'side_B msg':'side_A msg' ">
+                {{msg.message}}
+                <div class="time">
+                    <span *ngIf="(msg.sender || msg._sender).userId != chatUserId && msg.mark_as_read"><img
+                            src="./assets/images/VV.png"></span> {{GetTime(msg.createdAt)}}
+                </div>
+            </div>
+            <div dir="auto" *ngIf="msg.messageType == 'user' && (msg.customType == 'href')"
+                [class]="(msg.sender || msg._sender).userId == chatUserId ? 'side_B msg':'side_A msg' ">
+                <a [href]="msg.message">{{msg.message.replace('\n','<br/>')}}</a>
+                <div class="time">
+                    <span *ngIf="(msg.sender || msg._sender).userId != chatUserId && msg.mark_as_read"><img
+                            src="./assets/images/VV.png"></span> {{GetTime(msg.createdAt)}}
+                </div>
+            </div>
+            <div *ngIf="msg.customType == 'link' || msg.customType == 'waitForUpload.link'"
+                [class]="(msg.sender || msg._sender).userId == chatUserId ? 'side_B msg link_msg':'side_A msg link_msg' ">
+                <div class="baloo-font">{{GetLinkData(msg.message).description}}</div><br />
+
+
+                <a class="link" *ngIf="!mobilemode" [target]="'_blank'"
+                    [href]="'./GoToLink/' + GetLinkData(msg.message).id">{{'./GoToLink/' + GetLinkData(msg.message).id}}</a>
+                <a class="link" *ngIf="mobilemode" [target]="'_self'"
+                    [href]="'./GoToLink/' + GetLinkData(msg.message).id">{{'./GoToLink/' + GetLinkData(msg.message).id}}
+                </a>
+                <div class="picture_container">
+                    <img (click)="DisplayImage($event)"
+                        [src]="GetLinkData(msg.message).picture | DefaultImageLinkFilter"
+                        (error)="DefultLinkImage($event)">
+                    <Bag [item_id]="GetLinkData(msg.message).id" class="wishlist"></Bag>
+                </div>
+                <div class="time"><span *ngIf="!msg.sideB && msg.mark_as_read"><img src="./assets/images/VV.png"></span>
+                    {{GetTime(msg.createdAt)}}</div>
+            </div>
+            <div *ngIf="msg.messageType == 'file'"
+                [class]="(msg.sender || msg._sender).userId == chatUserId ? 'side_B msg img_msg':'side_A msg img_msg' ">
+                <div class="picture_container">
+                    <img (click)="DisplayImage($event)" [src]="msg.url | image64Secure">
+                </div>
+                <div class="time"><span *ngIf="!msg.sideB && msg.mark_as_read"><img src="./assets/images/VV.png"></span>
+                    {{GetTime(msg.createdAt)}}</div>
+            </div>
+
+            <div class="clear_float"></div>
+        </div>
+
+    </div>
+
+    <div #footerElem [class]="'footer ' + connectionStatus">
+        <textarea #inputElem (keyup)="MatchInputHeight()" class="input_msg" type="text" placeholder={{__type_msg}}
+            [(ngModel)]="input" dir="auto"></textarea>
+        <span><img src="./assets/images/import.png" (click)="AttachItemClick()"></span>
+        <span><img class="send" src="./assets/images/send.png" (click)="SendMsg()"></span>
+    </div>
+    <!--<Open_Image></Open_Image>-->
+    <Image_Foucs></Image_Foucs>
+    <Pop_message [_LinkOrImage]="true" (_LinkOrImageEvent)="AttachItem($event)" [_isShow]="showPopMsg"></Pop_message>
+    <My_links *ngIf="is_My_links_open" class="open" [isSelectMode]="true" (selectLinkEvent)="selectedLink($event)">
+    </My_links>
+    <input #imageProfileFromGallery type="file" (change)="SelectImageFromGallery()" accept="image/*"
+        style="display:none" />
+</div>

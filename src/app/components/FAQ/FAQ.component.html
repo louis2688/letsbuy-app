@@ -1,0 +1,36 @@
+<div class="background"></div>
+<div class="main_container">
+    <div class="top">
+        <!-- <Logo></Logo> -->
+        <Menu style="width: 92%;"></Menu>
+        <div class="main_title baloo-font">{{__faq_title}}</div>
+        <div class="sub_title">{{__faq_subtitle}}</div>
+    </div>
+    <div class="dividers">
+        <div [class]="filter=='General'?'divider tab_checked':'divider'" (click)="ChangeTab('General')">{{__tab1}}</div>
+        <div [class]="filter=='User'?'divider tab_checked':'divider'" (click)="ChangeTab('User')">{{__tab2}}</div>
+        <div [class]="filter=='Specialist'?'divider tab_checked':'divider'" (click)="ChangeTab('Specialist')">{{__tab3}}</div>
+        <div class="clear"></div>
+    </div>
+    <div class="list_container">
+        <div class="item" *ngFor="let i of items | QuestionFilter:filter">
+            <div class="question" *ngIf="i.isOpen; else default">
+                <img class="icon" (click)="click(i)"  src="./assets/images/open_question.png">
+                {{i.question}}
+            </div>
+
+            <ng-template #default>
+                <img class="icon" (click)="click(i)" src="./assets/images/close_question.png"  />
+                {{i.question}}
+            </ng-template>
+
+            <div [class]="i.isOpen ? 'answer open': 'answer'" class="answer">{{i.answer}}</div>
+        </div>
+
+    </div>
+    <div class="footer">
+        <div class="txt">{{__footer_txt}}</div>
+        <span class="contact_us" [routerLink]="['/Contact_us']">{{__footer_btn}}</span>
+        <div class="clear"></div>
+    </div>
+</div>

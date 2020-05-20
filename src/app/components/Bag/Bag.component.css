@@ -1,0 +1,9 @@
+.add_to_wishlist {
+   width:100%;
+   height:100%;
+   border-radius: 50%;
+}
+    .add_to_wishlist.added {
+        background: linear-gradient(#f79500, #f7d200);
+        background-clip: padding-box;
+    }

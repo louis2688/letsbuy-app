@@ -1,0 +1,249 @@
+.background {
+    background: linear-gradient(#fcfcfc,#ebeced);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width:100%;
+    z-index:-1;
+}
+
+.main_container {
+    width: 100%;
+    height: 100%;
+}
+
+.top {
+    width: 100%;
+    padding-top: 6%;
+    text-align: center;
+    z-index: 100;
+    background: linear-gradient(#fcfcfc,#f8f8f9);
+}
+
+Menu {
+    position: absolute;
+    top: 2vmin;
+    left: 4%;
+    margin: 0;
+    padding: 0;
+}
+Right_menu {
+    position: absolute;
+    top: 3%;
+    right: 4%;
+    margin: 0;
+    padding: 0;
+
+}
+.main_title {
+    font-size: var(--main_font_size-);
+}
+
+.sub_title {
+    font-size: var(--second_font_size-);
+    color: var(--font_color-);
+    margin: 2% 0;
+}
+.blog_pic{
+    width:100%;
+    border-radius:20px;
+}
+.blog_pic>img {
+    width: 100%;
+    border-radius: 20px;
+}
+.blog_container {
+    width: 92%;
+    margin: 3% auto;
+    margin-bottom: 70px;
+}
+.blog_header {
+    margin-bottom:10px;
+    font-size:var(--name_font_size-);
+}
+.blog_txt {
+    width: 100%;
+    font-size: var(--second_font_size-);
+}
+
+.right_side {
+    width:45%;
+    float:right;
+}
+.to_link{
+    background:var(--BG2_purple-); 
+    padding:8px 0;
+    width:92%;
+    border-radius:30px;
+    text-align:center;
+    margin: 2px auto;
+    margin-bottom:2%;
+    color:white;
+}
+.picture_container {
+    width:100%;
+}
+.img_container {
+    width: 45%;
+    float: left;
+    margin: 2.5%;
+    padding-top: 45%;
+    position: relative;
+}
+.img_container:only-of-type {
+    width: 100%;
+    height: auto;
+}
+
+    .img_container > img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    BAG{
+        position: absolute;
+        top: 0;
+        max-width: 39px;
+    }
+.footer_container {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    transform: translate(0,101%);
+    -ms-transform: translate(0,101%);
+    -webkit-transform: translate(0,101%);
+    -moz-transform: translate(0,101%);
+    -o-transform: translate(0,101%);
+    transition: transform 1.5s;
+}
+    .footer_container.open {
+        transform: translate(0%,0%);
+        -ms-transform: translate(0%,0%);
+        -webkit-transform: translate(0%,0%);
+        -moz-transform: translate(0%,0%);
+        -o-transform: translate(0%,0%);
+    }
+.footer {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    padding:1%;
+    padding-bottom:4%;
+    background-size:cover;
+}
+.go2chat {
+    position:absolute;
+    right:15%;
+    top:9%;
+    overflow: hidden;
+    height: 44px;
+}
+Follow {
+    position: absolute;
+    left: 25%;
+    top: 9%;
+    width:12vmin;
+}
+.btn_txt {
+    margin: -30%;
+    color: white;
+}
+.name {
+    font-size: 6vmin;
+}
+.specialist_pic{
+    border-radius:50%;
+    position:absolute;
+    width:40%;
+    left:30%;
+    top:-36%;
+}
+.container_details {
+    width: 92%;
+    margin: 0 auto;
+    margin-top: 13%;
+    background-color: white;
+    border-radius: 20px;
+    text-align: center;
+    padding-top: 10%;
+    padding-bottom: 55px;
+}
+.star {
+    position: relative;
+    height: 20px;
+    width: 20px;
+    float: left;
+    margin:0 1px;
+}
+.rate {
+    margin: auto;
+    width: fit-content;
+}
+.rating {
+    float: left;
+    font-size: var(--main_font_size-);
+} 
+.star > img {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0;
+}
+
+    .star > .full {
+        clip: rect(0, 10px, 20px, 0);
+    }
+
+    a{
+        color: white!important;
+        font-weight: bold!important;;
+    }
+
+@media(orientation:landscape) {
+    .top{
+        padding-top:3%;
+    }
+    
+    .specialist_pic {
+        width: 30%;
+        left: 35%;
+    }
+    .container_details {
+        margin-top: 8%;
+    }
+    .go2chat{
+        right:25%;
+    }
+    Follow {
+        left: 30%;
+    }
+    
+}
+.clear{
+    clear:both;
+    content:"";
+}
+
+
+@media (min-width: 1000px) {
+    .background {
+        max-width: 600px;
+        margin: auto;
+    }
+    .footer {
+        max-width: 600px;
+        padding-bottom: 1%;
+    }
+    Follow {
+        width: 7vmin;
+    }
+    .rating {
+        font-size: 20px;
+        margin-top: -3px;
+    }
+}

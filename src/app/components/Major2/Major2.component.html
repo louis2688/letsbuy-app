@@ -1,0 +1,46 @@
+﻿<div id="background"></div>
+<div class="main_container">
+    <!-- <Logo></Logo> -->
+    <div class="top">
+        <Menu style="width: 92%;"></Menu>
+        <div class="title baloo-font">{{__major_title}}</div>
+        <div class="sub_title">{{__major_subtitle}}</div>
+    </div>
+    <div  class="btn_container text-center">
+        <div class="btn main_btn" [routerLink]="['/Search_specialist']">
+            <div [class]="MainImageClass()"></div>
+            <div class="txt_btn">{{__find_specialist_btn_maintxt}}</div>
+            <div class="action_btn  baloo-font">{{__find_product_main_btn_secdtxt}}</div>
+        </div>
+        
+    </div>
+    <div class="btn_container text-center">
+        
+        <div class="left_btn" [routerLink]="['/Search_product']">
+            <div class="btn">
+                <img class="btn_img baloo-font" src="./assets/images/find_product.png" alt="#">
+                <div class="txt_btn">{{__find_product_btn_maintxt}}</div>
+                <div class="sub_txt_btn">Our saved specialists </div>
+            </div>
+        </div>
+        <div class="right_btn">
+            <div class="btn baloo-font" [routerLink]="['/Best_blogs']">
+                <img class="btn_img" src="./assets/images/best_blogs.png" alt="#">
+                <div class="txt_btn">{{__best_blogs_btn_maintxt}}</div>
+                <div class="sub_txt_btn">Favorite specialists</div>
+            </div>
+        </div>
+        <div class="clear"></div>
+        
+
+    </div>
+
+    <div *ngIf="!isSpec" class="become_spec baloo-font" [routerLink]="['/Hi_info','setting']">
+        <div class="white_area  baloo-font">
+            Share Your links<br /> & Make Some Money!
+        </div>
+        <div class="become_spec_btn  baloo-font">
+            Become a Specialist
+        </div>
+    </div>
+</div>

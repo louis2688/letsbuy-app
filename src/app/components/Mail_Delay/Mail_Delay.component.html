@@ -1,0 +1,14 @@
+
+<div *ngIf="_isShow" class="bg">
+    <div class="content">
+        <div class="exit baloo-font" (click)="tooglePop()">X</div>
+        <div class="text">
+            If you have'nt recieve a code you can: <br />
+            1. Wait a few min & drink a hot beverage<br />
+            2. Check your other e-mail adreeses<br />
+            3. Find out what happend<br />
+            with our costumer service:
+        </div>
+        <div class="btn baloo-font" [routerLink]="['/Contact_us']">Mail our costumer service >>></div>
+    </div>
+</div>

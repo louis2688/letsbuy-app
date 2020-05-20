@@ -1,0 +1,57 @@
+<div class="background"></div>
+<div class="main_container">
+    <div class="top">
+        <Menu style="width: 92%;"></Menu>
+        <div class="main_title baloo-font">{{__deal_title}}</div>
+        <div class="sub_title">{{__deal_subtitle}}</div>
+    </div>
+    <div class="container">
+        <div class="gallery">
+            <img class="big_img" [src]="item.img" />
+        </div>
+        <div class="clear"></div>
+        <div class="txt_container">
+            <div class="description">{{item.description}}</div>
+            <div class="site">{{item.site}}</div>
+            <div class="date">{{__date}}: <span>{{item.date |date : "dd/MM/yyyy"}}</span></div>
+        </div>
+        <div class="specialist">
+            <div class="from">{{__deal_from}}</div>
+            <img class="picture" [src]="seller.picture" [routerLink]="['/My_hi',seller.id]">
+            <div class="clear_float">
+                <div [class]="seller.isAvailable? 'available' : 'available off' " ></div>
+            </div>
+            <div class="container_details">
+                <div class="name ">{{seller.fname}} {{seller.lname}}</div>
+                <div class="rate" [routerLink]="['/Reviews',seller.id]">
+                    <div class="rating">{{seller.rate}}</div>
+                    <div class="star star1">
+                        <img class="empty" src="./assets/images/1Star.png" />
+                        <img class="full" [style.clip]="seller.rate | clipSafe : 1" src="./assets/images/1StarFull.png" />
+                    </div>
+                    <div class="star star2">
+                        <img class="empty" src="./assets/images/1Star.png" />
+                        <img class="full" [style.clip]="seller.rate | clipSafe : 2" src="./assets/images/1StarFull.png" />
+                    </div>
+                    <div class="star star3">
+                        <img class="empty" src="./assets/images/1Star.png" />
+                        <img class="full" [style.clip]="seller.rate | clipSafe : 3" src="./assets/images/1StarFull.png" />
+                    </div>
+                    <div class="star star4">
+                        <img class="empty" src="./assets/images/1Star.png" />
+                        <img class="full" [style.clip]="seller.rate | clipSafe : 4" src="./assets/images/1StarFull.png" />
+                    </div>
+                    <div class="star star5">
+                        <img class="empty" src="./assets/images/1Star.png" />
+                        <img class="full" [style.clip]="seller.rate | clipSafe : 5" src="./assets/images/1StarFull.png" />
+                    </div>
+                </div>
+                <br />
+                <div class="Specialities">{{__specialities}}: <span *ngFor="let s of seller.specialitiesList">{{s.name}}, </span>& Meybe more</div>
+                <div class="sales"><span>{{seller.totalSells}}</span>{{__sales}}</div>
+            </div>
+            <span class="go2chat" [routerLink]="['/Chat_speciality',seller.id]">{{__chat}}</span>
+            <span class="go2blog" [routerLink]="['/Blog_post']">{{__to_blog}}</span>
+        </div>
+    </div>
+</div>

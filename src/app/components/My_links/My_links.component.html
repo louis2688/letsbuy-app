@@ -1,0 +1,97 @@
+﻿<div class="background"></div>
+<div class="main_container">
+    <div class="top">
+        <Menu style="width: 92%;" *ngIf="!postMode"></Menu>
+        <!-- <Logo></Logo> -->
+        <img *ngIf="postMode" class="temp-back" (click)="ClosePopup()" src="./assets/images/back.png" alt="#" /><br />
+        <div class="main_title baloo-font"><span class="name">{{userProfile.friendlyName}} </span>{{__my_links_title}}
+        </div>
+        <div class="sub_title">{{__my_links_subtitle}}!</div>
+        <div *ngIf="!userProfile.blockedAdviser" class="add_link_container">
+            <img class="specialist_pic" [src]="userProfile.imageUrl | DefaultImageProfilFilter" />
+            <input class="link" placeholder={{__add_link}} [(ngModel)]="linkUrl" />
+            <div class="add_btn baloo-font" (click)="AddLink()">{{__add_link_btn}}</div>
+            <div class="clear"></div>
+        </div>
+        <input class="search_link" placeholder={{__search_link}} [(ngModel)]="filter" />
+        <!-- <div class="bar_container">
+            <div [class]="'divider1' + (byCategory ? '' : ' tab_checked')" (click)="ShowByFolder()">{{__folder_tab}}</div>
+            <div [class]="'divider2' + (byCategory ? ' tab_checked' : '')" (click)="ShowByCategory()">{{__category_tab}}</div>
+        </div> -->
+        <br />
+        <div class="clear_border"></div>
+    </div>
+    <div *ngIf="showAddLinkNote && !userProfile.blockedAdviser && items.length == 0" id="advice" class="text-center">
+        <ng-container *ngIf="!userProfile.isSpec">
+            <h3>
+                Want to become a specialist?
+            </h3>
+            <h4>
+                go to the sites we work with ,choose a site and add link to your links page, now you are hi lets buy
+                adviser
+            </h4>
+        </ng-container>
+        <ng-container *ngIf="userProfile.isSpec">
+            <h3>
+                You have no links
+            </h3>
+            <h4>
+                links can help you serve your clitens faster
+            </h4>
+        </ng-container>
+
+    </div>
+    <div *ngIf="userProfile.blockedAdviser" id="advice" class="text-center">
+        <h3>
+            You are currently blocked from be adviser
+        </h3>
+        <h4>
+            plase conect us to see why
+        </h4>
+    </div>
+    <div *ngIf="!userProfile.blockedAdviser" class="list_container">
+        <div *ngFor="let f of items | FolderLinksFilter:filter" [class]="SetClassByItems(f.itemsAmount)"
+            (click)="OpenFolder(f.id,f.name)">
+            <img *ngFor="let pic of f.images" [src]="pic | DefaultImageLinkFilter" (error)="DefultImage($event)" />
+            <div class="clear"></div>
+            <div class="title">{{f.name}}</div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="add_btn go2site baloo-font" [routerLink]="['/Sites']">The sites that we work with</div>
+    </div>
+    <div class="open_folder_BG" *ngIf="isFolderOpen">
+        <div class="open_folder folder">
+            <img class="exit" src="./assets/images/close_icon.png" (click)="closeFolder()" />
+            <div class="link_name">{{selectedFolderName}}</div>
+            <div class="items_container">
+                <div class="item " *ngFor="let item of folderItems" (click)="ToggleFocus(item, $event)">
+                    <div class="focus " *ngIf="item.isfocus">
+                        <div class="site_name ">{{item.site}}</div>
+                        <div class="btn" *ngIf="!isSelectMode" (click)="EditLink(item.id)">Edit Link</div>
+                        <a style="float: right;" class="btn" *ngIf="!isSelectMode" [href]="'./GoToLink/' + item.id">Open
+                            Link</a>
+                        <div class="btn create_post" *ngIf="!isSelectMode" (click)="CreatePost(item.id)">Create post
+                        </div>
+                        <div style="float: right;--BG1_blue-:#FF40FF;" class="btn create_post" *ngIf="!isSelectMode"
+                            (click)="CopyToClipboard(item)">Copy Link
+                        </div>
+                        <div class="clear"></div>
+                        <img class="send_link" src="./assets/images/send_link.png" *ngIf="isSelectMode&&!postMode"
+                            (click)="SelectLink(item.id)" />
+                        <div class="send_link btn" *ngIf="isSelectMode&&postMode" (click)="SelectLink(item.id)">
+                            Select
+                        </div>
+                    </div>
+                    <div class="item_title ">{{item.description}}</div>
+                    <img class="item_img " [src]="item.picture | DefaultImageLinkFilter"
+                        (error)="DefultImage($event)" />
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <Toast></Toast>
+</div>
+<New_link *ngIf="isNewLinkOpen" [url]="this.linkUrl" (SavedChanges)="Refrash()" (Finish)="Close($event)"></New_link>
+<Edit_link *ngIf="isEditLinkOpen" [linkId]="editLinkId" (SavedChanges)="Refrash()" (Finish)="Close()"></Edit_link>

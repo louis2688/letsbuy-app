@@ -1,0 +1,119 @@
+.EditLanguagesList {
+    background: white;
+    border-radius: 20px;
+    padding: 5% 2%;
+    padding-bottom:2%;
+    position: relative;
+    text-align: center;
+}
+.exit {
+    position:absolute;
+    top:2vmin;
+    right:2vmin;
+    width:6vmin;
+}
+.title,
+.list_container > * {
+    color: #2e313c;
+}
+.list_container {
+    position: relative;
+    width: 96%;
+    background: white;
+    border-radius: 20px;
+    margin: 3vmin auto;
+    overflow-y: scroll;
+}
+
+.item {
+    padding:2%;
+    border-radius: 30px;
+    width: 95%;
+    margin: 3vmin auto;
+    border: 1px solid lightgray;
+    text-align: left;
+    position: relative;
+    background-color: #f0f1f1;
+}
+.language_name {
+    margin: 0 2vmin;
+}
+
+.container > input {
+    opacity: 0;
+    width: 15px;
+    height: 15px;
+}
+
+.container {
+    display: block;
+    position: relative;
+    padding-left: 22px;
+    padding-right: 0%;
+    margin: 5px;
+    cursor: pointer;
+    font-size: var(--second_font_size-);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.checkmark {
+    position: absolute;
+    top: 3px;
+    left: -3px;
+    height: 20px;
+    width:20px;
+    border-radius: 50%;
+    background-color: white;
+    border:1px solid #eee;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.container .checkmark:after {
+    right: 5%;
+    top: -30%;
+    width: 70%;
+    height: 110%;
+    background-image: url("../../../assets/images/V.png");
+    background-size: cover;
+    overflow: visible;
+}
+.checkBox_container {
+    position:absolute;
+    top: -3px;
+    right:0;
+}
+   
+.checkBox_container.float{
+    float:left;
+    position:unset;
+}
+.clear{
+    clear:both;
+    content:"";
+}
+.checkBox_container.float > label {
+    font-size: var(--third_font_size-);
+    color: #2e313c;
+}
+.update {
+    background: var(--BG1_blue-);
+    padding: 3%;
+    margin:4vmin auto;
+    width:45%;
+    text-align: center;
+    border-radius: 30px;
+    color: white;
+    font-size: var(--second_font_size-);
+}

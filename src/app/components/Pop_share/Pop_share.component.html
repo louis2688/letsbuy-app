@@ -1,0 +1,34 @@
+
+<div [class]=" 'background' + (_isShow ? ' show':'')">
+    <div class="close" (click)="exit()">X</div>
+    <div class="msg">
+        {{_msg}}
+    </div>
+    <div class="text-center" *ngIf="!mobilemode">
+        <a target="_blank" href="mailto:?subject=Hi Lets Buy&amp;body=Check out this site https://www.hiletsbuy.com."
+           title="Hi Lets Buy">
+            <img class="btn" src="./assets/images/shareIcons/Gmail.png" />
+        </a>
+        <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fhiletsbuy.com">
+            <img class="btn" src="./assets/images/shareIcons/Facebook.png" />
+        </a>
+        <a target="_blank" href="https://twitter.com/home?status=https%3A//hiletsbuy.com">
+            <img class="btn" src="./assets/images/shareIcons/Twitter.png" />
+        </a>
+    </div>
+    <div class="text-center" *ngIf="mobilemode">
+        <a [href]="'mailto:?subject=Hi Lets Buy&amp;body=Check out this site https://www.hiletsbuy.com.' | HybridLink"
+           title="Hi Lets Buy">
+            <img class="btn" src="./assets/images/shareIcons/Gmail.png" />
+        </a>
+        <a  [href]="'https://www.facebook.com/sharer/sharer.php?u=https://www.hiletsbuy.com' | HybridLink">
+            <img class="btn" src="./assets/images/shareIcons/Facebook.png" />
+        </a>
+        <a [href]="'https://twitter.com/home?status=https://www.hiletsbuy.com'| HybridLink">
+            <img class="btn" src="./assets/images/shareIcons/Twitter.png" />
+        </a>
+        <a href="whatsapp://send?text=https://app.hiletsbuy.com" data-action="share/whatsapp/share">
+            <img class="btn" src="./assets/images/shareIcons/whatsapp.png" />
+        </a>
+    </div>
+</div>

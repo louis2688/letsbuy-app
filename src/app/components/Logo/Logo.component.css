@@ -1,0 +1,11 @@
+img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    max-height: 70px;
+    margin-right: 40px;
+    margin-top: 10px;
+}
+.smallSize{
+    width:25px;
+}

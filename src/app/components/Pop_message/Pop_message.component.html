@@ -1,0 +1,32 @@
+
+<div *ngIf="!_LinkOrImage" [class]=" 'background' + (_isShow ? ' show':'')">
+    <div class="msg">
+        {{_msg}}
+    </div>
+    <div class="btn yes baloo-font" (click)="Action()">{{_ok_msg}}</div>
+    <div class="btn no baloo-font" (click)="tooglePop()">{{_not_ok_msg}}</div>
+</div>
+
+<div *ngIf="_LinkOrImage" [class]=" 'background' + (_isShow ? ' show':'')">
+    <div class="relative_container">
+        <img class="exit" (click)="Exit()" src="./assets/images/close_icon.png" />
+    </div>
+   <!--<div class="divider">
+       <div class="icon">
+           <img src="./assets/images/camera.png"/>
+       </div>
+       <div class="btn_txt" (click)="BtnClick('Camera')">Photo</div>
+   </div>-->
+    <div class="divider">
+        <div class="icon">
+            <img src="./assets/images/gallery.png"/>
+        </div>
+        <div class="btn_txt" (click)="BtnClick('Gallery')">Photo</div>
+    </div>
+    <div class="divider">
+        <div class="icon">
+            <img src="./assets/images/link_icon.png"/>
+        </div>
+        <div class="btn_txt" (click)="BtnClick('Link')">Add Link</div>
+    </div>
+</div>

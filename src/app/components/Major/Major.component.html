@@ -1,0 +1,35 @@
+﻿<div id="background"></div>
+<div class="main_container">
+    <!-- <Logo></Logo> -->
+    <div class="top">
+        <Menu [hideBack]="true"></Menu>
+        <div class="title baloo-font">Hello {{username}}</div>
+        <div class="sub_title"></div> 
+    </div>
+    <div *ngIf="!moreOptions" class="btn_container text-center">
+        <div class="btn main_btn" [routerLink]="['/Search_specialist']">
+            <div [class]="MainImageClass()"></div>
+            <div class="txt_btn">{{__find_specialist_btn_maintxt}}</div>
+            <div class="action_btn  baloo-font">{{__find_product_main_btn_secdtxt}}</div>
+        </div>
+        <!-- <div  [routerLink]="['/Major2']" class="sub_title more_options">For More Options - Press Here!</div> -->
+    </div>
+  
+    <div *ngIf="isGuest" class="become_spec baloo-font" [routerLink]="['/Signin']">
+        <div class="white_area  baloo-font">
+            Lets Log In!<br />& Make Some Money!
+        </div>     
+        <div class="become_spec_btn  baloo-font">
+            Become a User
+        </div>
+    </div>
+
+    <div *ngIf="!isSpec && !isGuest && !isBlockedAdviser" class="become_spec baloo-font" [routerLink]="['/My_links']">
+        <div class="white_area  baloo-font">
+            Share Your links<br /> & Make Some Money!
+        </div>
+        <div class="become_spec_btn  baloo-font">
+            Become a Specialist
+        </div>
+    </div>
+</div>

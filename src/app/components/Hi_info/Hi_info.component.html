@@ -1,0 +1,199 @@
+﻿<div class="background"></div>
+<div class="main_container">
+    <div class="content">
+        <div class="top">
+            <div class="title baloo-font" >{{__hi_info_title}}</div>
+            <Menu style="width: 92%;"></Menu>
+           <Logo [_whiteLogo]="true"></Logo>
+        </div>
+
+        <div class="picture_container">
+            <div class="loader_container" *ngIf="loadingPicture">
+                <div class="loadersmall"></div>
+            </div>
+            <div class="picture" [style.background-image]="'url('+currentUser.picture +')' | image64SecureToStyle"></div>
+            <div class="camera" (click)="SelectImageDialog()"></div>
+            <input #imageProfileUpload type="file" (change)="SelectImage()" style="display:none" />
+
+        </div>
+        <div class="txt_container ">
+            <div class="name baloo-font">{{Nickname()}}</div>
+            <div [class]="moreSpec? 'specialities expended':'specialities'">
+                {{__specialist_in}}: <span *ngFor="let s of currentUser.specialitiesList"> {{s.Name || s.name}}, </span>
+            </div>
+            <span class="more_specialities" (click)="ToggleSpecialities()">{{__show_more}}...</span>
+        </div>
+        <div class="clear"></div>
+        <div *ngIf="state == 'tabs'" class="tab_container">
+            <div class="left_tab">
+                <div class="tab baloo-font">{{__left_tab_title}}</div>
+                <div class="tab_content">
+                    <div class="row">
+                        <div class="left_part ">
+                            <div>
+                                <span [class]=" 'circle_number BG_green baloo-font' + ((currentUser.newUserChats + newSpecialistChats) > 0 ? '' : ' hideByOpacity')" [routerLink]="['/My_chats']">{{currentUser.newUserChats + newSpecialistChats }}</span>
+                                <span [routerLink]="['/My_chats']">{{__hi_chats}}</span>
+                            </div>
+                        </div>
+                        <div class="right_part ">
+                            <div *ngIf="currentUser.newUserChats > 0" class="circle_number BG_purple baloo-font" [routerLink]="['/My_chats']">{{currentUser.newUserChats}}</div>
+                            <div *ngIf="currentUser.newSpecialistChats > 0" class="circle_number BG_blue baloo-font" [routerLink]="['/My_chats']">{{currentUser.newSpecialistChats}}</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="left_part ">
+                            <div>
+                                <div class="BG_icon buys" [routerLink]="['/My_buys']"></div>
+                                <span [routerLink]="['/My_buys']">{{__my_buys}}</span>
+                            </div>
+                        </div>
+                        <div class="right_part ">
+                            <div *ngIf="currentUser.newBuys > 0" class="ellipse_number BG_purple baloo-font" [routerLink]="['/My_buys']">{{currentUser.newBuys}} {{__new}}</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="left_part ">
+                            <div>
+                                <div class="BG_icon wishes" [routerLink]="['/Wishlist']"></div>
+                                <span [routerLink]="['/Wishlist']">{{__my_wishes}}</span>
+                            </div>
+                        </div>
+                        <div class="right_part ">
+                            <div *ngIf="currentUser.newWishes > 0" class="ellipse_number BG_purple baloo-font" [routerLink]="['/Wishlist']">{{currentUser.newWishes}} {{__new}}</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="left_part ">
+                            <div>
+                                <div class="BG_icon sells" [routerLink]="['/My_sells']"></div>
+                                <span [routerLink]="['/My_sells']">{{__my_sells}}</span>
+                            </div>
+                        </div>
+                        <div class="right_part ">
+                            <div *ngIf="currentUser.newSells > 0" class="ellipse_number BG_blue baloo-font" [routerLink]="['/My_sells']">{{currentUser.newSells}} {{__new}}</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="left_part full_row ">
+                            <div [routerLink]="['/My_links']">
+                                <div class="BG_icon Spec_links"></div>
+                                {{__specialist_links}}
+                            </div>
+                        </div>
+                    </div>
+                    <!--<div class="row" [routerLink]="['/My_hi']">
+                        <div class="left_part full_row ">
+                            <div>
+                                <div class="BG_icon blog"></div>
+                                {{__blog_options}}
+                            </div>
+                        </div>
+                    </div>-->
+                </div>
+            </div>
+            <!--<div class="right_tab ">
+                <div class="tab_helper">
+                    <div class="change_to_left_tab " (click)="showLeftTab()"></div>
+                </div>
+                <div class="tab right" (click)="showRightTab()">{{__right_tab_title}}</div>
+                <div style="clear: both; content: '';"></div>
+                <div class="tab_content right">
+
+                    <div class="BG_div ">
+                        <div class="row">
+                            <div class="left_part">
+                                <div>
+                                    <span class="circle_number BG_green" [routerLink]="['/My_chats']">6</span> {{__hi_chats}}
+                                </div>
+                            </div>
+                            <div class="right_part ">
+                                <div class="circle_number BG_purple" [routerLink]="['/My_chats']">2</div>
+                                <div class="circle_number BG_blue" [routerLink]="['/My_chats']">4</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="left_part ">
+                                <div>
+                                    <div class="BG_icon sells"></div>
+                                    {{__my_sells}}
+                                </div>
+                            </div>
+                            <div class="right_part ">
+                                <div class="ellipse_number BG_blue">50 {{__new}}</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="left_part full_row ">
+                                <div>
+                                    <div class="BG_icon Spec_links"></div>
+                                    {{__specialist_links}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="left_part full_row ">
+                                <div>
+                                    <div class="BG_icon blog"></div>
+                                    {{__blog_options}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+        </div>
+
+        <div *ngIf="state == 'help'" class="help">
+            <div class="title">{{__help_title}}? </div>
+            <div [routerLink]="['/FAQ']" class="btn"> {{__faq_btn}}<span class="glyphicon glyphicon-chevron-right"></span></div>
+            <div class="btn" [routerLink]="['/About_us']">{{__about_btn}}<span class="glyphicon glyphicon-chevron-right"></span></div>
+            <div class="btn" [routerLink]="['/RenewTOU',true]">{{__terms_btn}}<span class="glyphicon glyphicon-chevron-right"></span></div>
+            <div [routerLink]="['/Contact_us']" class="btn">{{__contact_btn}}<span class="glyphicon glyphicon-chevron-right"></span></div>
+        </div>
+
+
+        <div *ngIf="state == 'setting'" class="setting">
+            <div class="title">{{__setting_title}}</div>
+            <div class="btn">
+                <div class="main_txt" (click)="openEditPersonalInfo()">{{__personal_info_btn_maintxt}}</div>
+                <div class="second_txt">{{__personal_info_btn_secdtxt}}</div>
+                <span class="glyphicon glyphicon-chevron-down" (click)="openEditPersonalInfo()"></span>
+                <EditPersonalInfo *ngIf="EditPersonalInfo" [currentUser]="currentUser" (openClosePopupEvent)="toggleFixedCssToMainContainer()"></EditPersonalInfo>
+            </div>
+            <div class="btn">
+                <div class="main_txt" (click)="openEditSpecialistCategories(currentUser.specialitiesList)"> {{__specialist_info_btn_maintxt}}</div>
+                <div class="second_txt">{{__specialist_info_btn_secdtxt}}</div>
+                <span class="glyphicon glyphicon-chevron-right" (click)="openEditSpecialistCategories(currentUser.specialitiesList)"></span>
+                <EditSpecialistCategories [user_categories]="GetUserCategories()" (exit)="openEditSpecialistCategories($event)" *ngIf="EditSpecialistCategories"></EditSpecialistCategories>
+            </div>
+            <div class="btn" [routerLink]="['/My_hi']">
+                <div class="main_txt">{{__blog_options}}</div>
+                <div class="second_txt">Update your blog</div>
+                <span class="glyphicon glyphicon-chevron-down"></span>
+            </div>
+            <div class="btn">
+                <div class="main_txt" (click)="openEditAccountInfo()"> {{__accountAndBilling_btn_maintxt}}</div>
+                <div class="second_txt">{{__accountAndBilling_btn_secdtxt}}</div>
+                <span class="glyphicon glyphicon-chevron-down" (click)="openEditAccountInfo()"></span>
+                <EditAccountInfo *ngIf="EditAccountInfo"></EditAccountInfo>
+            </div>
+
+            <div *ngIf="false" class="btn">
+                <div class="main_txt">{{__alertsAndNotifications_btn_maintxt}}</div>
+                <div class="second_txt">{{__alertsAndNotifications_btn_secdtxt}}</div>
+                <span class="glyphicon glyphicon-chevron-down"></span>
+            </div>
+
+            <div class="btn" (click)="Logout()">
+                <div class="main_txt">{{__log_out_btn_maintxt}}</div>
+                <div class="second_txt">{{__log_out_btn_secdtxt}}</div>
+                <span class="glyphicon glyphicon-chevron-down"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div (click)="SetState('setting')" class="part1 "> </div>
+        <div (click)="SetState('help')" class="part2 "></div>
+    </div>
+</div>

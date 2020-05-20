@@ -1,0 +1,19 @@
+<div class="EditLanguagesList">
+    <img class="exit" src="./assets/images/close_icon.png" #childExit (click)="update(true)" />
+    <div class="title">{{__EditLanguagesList_title}}</div>
+
+    <div class="list_container">
+        <div class="item" *ngFor="let i of selectableList">
+
+            <span class="language_name">{{i.value}}</span>
+            <div class="checkBox_container">
+                <label class="container">
+                    {{__select}}
+                    <input [(ngModel)]="i.selected" type="checkbox"/>
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="update" (click)="update(false)">{{__EditLanguagesList_btn}}</div>
+</div>

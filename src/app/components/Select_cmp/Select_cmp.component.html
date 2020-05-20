@@ -1,0 +1,24 @@
+<!-- <div [class]="!bg_white ? 'select' : 'select bg_white'" (click)="click()" id="selectpopup" [style.padding]="innerPadding">
+    {{(selectedObject ? selectedObject.value : selectedItemstring)}}
+    <span class="glyphicon glyphicon-chevron-right"></span>
+</div> -->
+<div (click)="click()" id="selectpopup">
+    {{selectedItemstring}}
+</div>
+
+<div class="select_popup" *ngIf="isOpen">
+    <img class="exit" src="./assets/images/close_icon.png" (click)="Choose('' , true)" />
+    <div class="title baloo-font">{{title}} By</div>
+    <!-- <div class="btn baloo-font" (click)="Clear()" >Clear Selection</div> -->
+    <div class="list_container">
+        <div class="item" *ngFor="let i of items" (click)="Choose(i,false)">
+            <span class="value">{{i.value}}</span>
+            <div class="checkBox_container">
+                <label class="container">
+                    <input type="checkbox" />
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+        </div>
+    </div>
+</div>

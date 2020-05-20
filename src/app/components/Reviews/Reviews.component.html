@@ -1,0 +1,74 @@
+<div class="main_container">
+    <Menu style="width: 92%;"></Menu>
+    <div class="top">
+        <div class="main_title baloo-font"> <span class="spec_name">{{currentSpecialist.fname}} {{currentSpecialist.lname}} </span>{{__reviews_title}}</div>
+        <div class="sub_title">{{__reviews_subtitle}}</div>
+        <div class="rate">
+            <div class="rating ">{{currentSpecialist.rate}}</div>
+            <div class="star star1 ">
+                <img class="empty" src="./assets/images/1Star.png" />
+                <img class="full" [style.clip]="currentSpecialist.rate | clipSafe : 1" src="./assets/images/1StarFull.png" />
+            </div>
+            <div class="star star2 ">
+                <img class="empty" src="./assets/images/1Star.png" />
+                <img class="full" [style.clip]="currentSpecialist.rate | clipSafe : 2" src="./assets/images/1StarFull.png" />
+            </div>
+            <div class="star star3 ">
+                <img class="empty" src="./assets/images/1Star.png" />
+                <img class="full" [style.clip]="currentSpecialist.rate | clipSafe : 3" src="./assets/images/1StarFull.png" />
+            </div>
+            <div class="star star4 ">
+                <img class="empty" src="./assets/images/1Star.png" />
+                <img class="full" [style.clip]="currentSpecialist.rate | clipSafe : 4" src="./assets/images/1StarFull.png" />
+            </div>
+            <div class="star star5 ">
+                <img class="empty" src="./assets/images/1Star.png" />
+                <img class="full" [style.clip]="currentSpecialist.rate | clipSafe : 5" src="./assets/images/1StarFull.png" />
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div *ngIf="canAddReview && !currentSpecialist.isLoggedUser"  class="btn write_review baloo-font" (click)="togglePopup()">{{__write_review}}</div>
+        <div *ngIf="!canAddReview" style="margin-bottom:55px;"></div>
+        <div class="help_container">
+            <div class="img_container">
+                <img [routerLink]="['/My_hi',currentSpecialistId]" class="specialist" [src]="currentSpecialist.picture | DefaultImageProfilFilter " (error)="DefultImage($event)" />
+                <div *ngIf="canChat" (click)="Go2Chat(currentSpecialistId)" class="chat">{{__chat}}</div>
+                <Follow *ngIf="canChat" (click)="ToggleIsFollow()" [isFollow]="currentSpecialist.isFollow"></Follow>
+            </div>
+        </div>
+    </div>
+    <div class="list_container ">
+      <div class="item" *ngFor="let r of items | ReviewFilter:loadMoreReviews">
+          <img class="user" [src]="r.picture | DefaultImageProfilFilter"/>
+          <div class="user_rate">
+              <img *ngFor="let i of [1,2,3,4,5]" [src]="CalcStarByRate(r,i)" />
+              <div class="rating">{{r.rating}}</div>
+              <div class="clear"></div>
+          </div>
+          <div class="txt_container">
+              <div class="name">{{r.name}}</div>
+              <div class="desc">{{r.description}}</div>
+              <div class="time">{{r.time.toDateString()}}</div>
+          </div>
+          <div class="clear"></div> 
+      </div>
+        <div *ngIf="items && items.length == 20" class="load_more baloo-font" (click)="loadMore()" >{{__load_more}}</div>
+    </div>
+    
+    <div class="popup" *ngIf="showPopup">
+        <div class="post_review">
+            <img class="exit" src="./assets/images/close_icon.png" (click)="togglePopup()"/>
+            <div class="star_container">
+                <img class="_1star" (click)="setPopupRate(1)" [src]="CalcStarByPopupRate(1)" />
+                <img class="_1star" (click)="setPopupRate(2)" [src]="CalcStarByPopupRate(2)" />
+                <img class="_1star" (click)="setPopupRate(3)" [src]="CalcStarByPopupRate(3)" />
+                <img class="_1star" (click)="setPopupRate(4)" [src]="CalcStarByPopupRate(4)" />
+                <img class="_1star" (click)="setPopupRate(5)" [src]="CalcStarByPopupRate(5)" />
+            </div>
+            <textarea class="txt_area" dir="auto" contenteditable="true" placeholder="{{__your_review}}" [(ngModel)]="popupReview"></textarea>
+            <div class="post_btn baloo-font" (click)="PostReview()">{{__post_review}}</div>
+        </div>
+    </div>
+    <Toast></Toast>
+    <Pop_message></Pop_message>
+</div>

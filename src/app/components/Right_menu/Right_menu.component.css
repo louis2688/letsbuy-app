@@ -1,0 +1,50 @@
+#exit>img{
+    width:7px;
+}
+.menu_icon {
+    width: 7px;
+    margin: 6px 0;
+}
+.menu_container {
+    position: fixed;
+    top: 4%;
+    left: 0;
+    width: 45%;
+    background: white;
+    overflow: hidden;
+    transform: translate(240%,0);
+    -ms-transform: translate(240%,0);
+    -webkit-transform: translate(240%,0);
+    -moz-transform: translate(240%,0);
+    -o-transform: translate(240%,0);
+    z-index: 1001;
+    transition: transform 1s;
+    padding: 3%;
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+    box-shadow: 0px 0px 10px grey;
+}
+
+    .menu_container.open {
+        transform: translate(130%,0);
+        -ms-transform: translate(130%,0);
+        -webkit-transform: translate(130%,0);
+        -moz-transform: translate(130%,0);
+        -o-transform: translate(130%,0);
+    }
+.title {
+    font-size: var(--main_font_size-);
+    color: #00c5cd;
+    margin-right:5%;
+}
+.btn{
+    text-align:left;
+    margin:1% 4%;
+    padding:3%;
+    width:70%;
+    border-bottom: 1px solid lightgrey;
+    font-size:var(--second_font_size-);
+}
+.btn_container{
+    margin-top:5%;
+}

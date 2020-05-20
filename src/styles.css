@@ -1,0 +1,83 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import url('https://fonts.googleapis.com/css?family=Rubik');
+@import url('https://fonts.googleapis.com/css?family=Baloo+Bhaijaan');
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+div, .rub-font{
+    font-family: 'Rubik';
+}
+
+h1, h2, h3, h4, h5, h6, .baloo-font {
+    font-family: 'Baloo Bhaijaan';
+    user-select: none;
+}
+
+.selectable {
+    user-select:unset;
+    cursor:pointer;
+}
+
+div, span {
+    user-select: none;
+    --main_font_size-: 5vmin;
+    --second_font_size-: 3.6vmin;
+    --third_font_size-: 2.5vmin;
+    --big_font_size-: 10.5vmin;
+    --medium_font_size-: 3.1vmin;
+    --name_font_size-: 4.16vmin;
+    --large_name_font_size-: 5.16vmin;
+    --font_color-: #a7aab4;
+    --BG1_blue-: linear-gradient(#00c5cd, #00dfd7);
+    --BG2_purple-: linear-gradient(#80189f, #a218ff);
+    --BG3_green-: linear-gradient(#44ef3f, #26c624);
+    --BG4_yellow-: linear-gradient(#f8d112, #f79b00);
+}
+
+.BG_blue {
+    background: var(--BG1_blue-);
+}
+
+.BG_purple {
+    background: var(--BG2_purple-);
+}
+
+.BG_green {
+    background: var(--BG3_green-);
+}
+
+.BG_yellow {
+    background: var(--BG4_yellow-);
+}
+
+.temp-back {
+    width: 25px;
+    margin: 15px 0 0 10px;
+    float: left;
+}
+
+.main_container{
+    overflow-y: auto;
+    padding-bottom: 60px;
+}
+
+@media (min-width: 1000px) {
+    div, span {
+        --main_font_size-: 28px;
+        --second_font_size-: 18px;
+        --third_font_size-: 1.5vmin;
+        --big_font_size-: 9.5vmin;
+        --medium_font_size-: 2.1vmin;
+        --name_font_size-: 22px;
+    }
+    Menu,Logo{
+        display:none;
+    }
+
+    main_container{
+        width: 600px;
+    }
+}

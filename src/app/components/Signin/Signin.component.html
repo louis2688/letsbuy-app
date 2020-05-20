@@ -1,0 +1,41 @@
+﻿<div class="main_container">
+    <div class="header">
+        <img src="./assets/images/logo.png" alt="#" />
+    </div>
+    <div class="text_container">Hi! Would you like to Login?</div>
+    <div class="text_container error">{{errorMsg}}</div>
+    <loadingBar *ngIf="isLoadLoginAction" [_size]="'small'"></loadingBar>
+    <form class="form">
+        <div>{{__username}}:</div>
+        <input type="text" name="username" [(ngModel)]="login.UserName" placeholder={{__enter_username}} />
+        <div>{{__password}}: </div>
+        <input type="password" name="password" [(ngModel)]="login.Password" placeholder={{__enter_password}} />
+        <div [routerLink]="['/ResetPassword']" id="forgot">
+            <span>{{__forgot_password}}</span>
+        </div>
+    </form>
+    <div class="btn_container">
+        <div id="logIn" class="btn baloo-font" (click)="Login()">
+            <span>{{__signin_login_btn}}</span>
+        </div>
+        <div id="signup" class="btn baloo-font" [routerLink]="['/Signup']">
+            <span>{{__signin_new_user_btn}}</span>
+        </div>
+        <!-- <div id="login_later" [routerLink]="['/Major']" class="btn baloo-font"><span>{{__login_later}}</span></div> -->
+        <div id="login_later" [routerLink]="['/Search_specialist']" class="btn baloo-font"><span>{{__login_later}}</span></div>
+    </div>
+    <div class="footer ">
+        <div class="footer_text baloo-font">{{__signin_footer_txt}}</div>
+        <div class="footer_btn_container">
+            <div class="footer_btn footer_gmail_container"><a [href]="googleLogin">
+                    <div class="footer_gmail"></div>
+                </a></div>
+            <div class="footer_btn footer_facebook_container"><a [href]="facebookLogin">
+                    <div class="footer_facebook"></div>
+                </a></div>
+        </div>
+    </div>
+    <Pop_message [_isShow]="show_pop" [_target]="'Major'"
+        [_msg]="'You are now a guest in our community. Choose to Login at any time in order to get the HiLetsBuy full experience'">
+    </Pop_message>
+</div>

@@ -1,0 +1,86 @@
+.border {
+    width: 100%;
+    margin: 2vmin auto;
+    height: 1px;
+    background-color: #43454c;
+}
+.box {
+    position: relative;
+    width: 100%;
+}
+.field {
+    color: var(--font_color-);
+    font-size: var(--second_font_size-);
+    width: 20%;
+    display: inline-block;
+    margin: 3px 0;
+}
+
+.field_input {
+    margin: 3px 2%;
+    margin-left: 8%;
+    border: 0;
+    border-bottom :1px solid white;
+    background-color: transparent;
+    font-size: var(--second_font_size-);
+    width: 35%;
+    padding: 0 5px;
+}
+
+.form_btn {
+    color: white;
+    text-decoration: underline;
+    font-size: var(--second_font_size-);
+    margin: 3px 1%;
+    width: 10%;
+}
+
+.expended_width {
+    width: 40%;
+}
+
+.value {
+    margin: 3px 2%;
+    margin-left: 5%;
+    display: inline-block;
+    padding: 0 5px;
+}
+
+.add_lang {
+    margin-left: 25%;
+}
+
+.select {
+    margin: 3px 5%;
+    margin-left:calc(5% + 5px);
+    display:inline-flex;
+    width:55%;
+}
+
+.edit{
+ float:right;
+}
+.edit_mode_btn {
+    float: right;
+    margin-top: 6px;
+}
+input:enabled {
+    background-color: #b5b7bd;
+}
+
+EditLanguagesList {
+    position: fixed;
+    top: 22vmin;
+    right: 4%;
+    left: 4%;
+    z-index:10;
+    max-height:80%;
+}
+
+.clear{
+    clear:both;
+    content:"";
+}
+.box>input{
+    width:60%;
+}

@@ -1,0 +1,18 @@
+<img class="menu_icon" src="./assets/images/more.png" alt="#" (click)="toogleMenu()" />
+
+<div [class]="isOpen ? 'menu_container open' : 'menu_container' ">
+    <span class="title"><strong>{{__right_menu_title}}</strong></span>
+    <span (click)="toogleMenu()" id="exit">
+        <img src="./assets/images/more.png"/>
+    </span>
+    
+    <br />
+    <div class="btn_container">
+        <div class="btn" [routerLink]="['/New_blog',NavigateToPostID]" >{{__right_menu_btn1}}</div><br />
+        <div class="btn" (click)="UplodeMsg()">{{__right_menu_btn2}}</div><br />
+        <div class="btn" (click)="UplodeToast()">{{__right_menu_btn3}}</div><br />
+    </div>
+</div>
+
+<Toast></Toast>
+<Pop_message [(_isShow)] ="uplode_msg" _msg="Are you sure you want to delete this post?" _not_ok_msg="Cancel"></Pop_message>

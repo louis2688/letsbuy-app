@@ -1,0 +1,264 @@
+.main_container {
+    width: 100%;
+}
+.top {
+    text-align:center;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    padding: 3vmin 0;
+    padding-bottom:2vmin;
+    background: linear-gradient(#fcfcfc,#ebeced);
+    z-index:50;
+}
+Menu {
+    position: fixed;
+    top:2%;
+    left: 4%;
+    margin: 0;
+    padding: 0;
+    z-index:100;
+}
+
+.main_title {
+    font-size: var(--main_font_size-);
+}
+
+.sub_title {
+    font-size: var(--medium_font_size-);
+    color: var(--font_color-);
+    margin: 2vmin 0;
+}
+.help_container {
+    width: 21vmin;
+    position: absolute;
+    right: 4%;
+    top: 15%;
+}
+.img_container {
+    width: 100%;
+    position: relative;
+    height:100%;
+}
+.specialist {
+    width: 100%;
+    border-radius: 50%; 
+}
+Follow{
+    position:absolute;
+    bottom:-3vmin;
+    right:-2px;
+    width:10vmin;
+}
+.chat {
+    position: absolute;
+    bottom: -3vmin;
+    left: -12%;
+    width: 90%;
+    background-image: url("../../../assets/images/chat_now.png");
+    background-position:center;
+    background-size:contain;
+    background-repeat:no-repeat;
+    color:white;
+    padding:5px;
+}
+
+.rating {
+    font-size: 1.2em;
+    float: left;
+    margin: 0 4%;
+}
+
+.rate {
+    color: var(--font_color-);
+    margin: 2vmin auto;
+    width:160px;
+}
+
+.star {
+    position: relative;
+    height: 20px;
+    width: 20px;
+    float: left;
+    margin:0 1px;
+}
+
+.star > img {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0;
+}
+
+.star > .full {
+    clip: rect(0, 10px, 20px, 0);
+}
+
+.btn {
+    border-radius:30px;
+    color:white;
+    margin: 1vmin auto;
+    padding:2vmin;
+    text-align:center;
+    font-size:var(--second_font_size-);
+}
+.write_review {
+    background:var(--BG1_blue-);
+}
+
+.list_container {
+    width: 100%;
+    overflow-y: scroll;
+    margin-top: 43vmin;
+}
+
+.item{
+    width:100%;
+    background:white;
+    border-bottom: 1px solid lightgray;
+    position:relative;
+    padding:2vmin 4vmin 0 4vmin;
+}
+
+.user {
+    width: 17vmin;
+    height:17vw;
+    border-radius: 50%;
+    float:left;
+}
+.name{
+    font-size:var(--name_font_size-);
+}
+.desc {
+    font-size: var(--second_font_size-);
+    margin: 2% 0;
+    min-height:30px;
+}
+.clear{
+    clear:both;
+    content:"";
+}
+.txt_container{
+    float:left;
+    width:70%;
+    position:relative;
+    padding-bottom: 8vmin;
+    margin: 0 3vmin;
+}
+.time{
+    position:absolute;
+    bottom:2vmin;
+    left:0;
+    font-size:var(--second_font_size-);
+}
+
+.user_rate {
+    color: var(--font_color-);
+    position: absolute;
+    right: 2%;
+    top: 5%;
+    width: 140px;
+}
+
+.user_rate > img {
+    height: 20px;
+    width: 20px;
+    float: left;
+    margin: 0 1px;
+}
+.load_more {
+    width: 35vmin;
+    color: white;
+    background: linear-gradient( #3c445d,#3b3e47);
+    text-align: center;
+    border-radius:30px;
+    padding: 2vmin 5vmin;
+    margin: 10px auto;
+}
+.popup{
+    position:fixed;
+    z-index:200;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    background:rgba(0,0,0,0.5);
+
+}
+.post_review{
+    background:white;
+    width:85%;
+    margin:40vmin auto;
+    position:relative;
+    padding:5vmin;
+    border-radius:10px;
+}
+.star_container{
+    text-align:center;
+    margin:5vmin auto;
+}
+._1star{
+    display:inline-block;
+    width:25px;
+    margin:1px;
+}
+.txt_area {
+    width: 80%;
+    margin: 3vmin 10%;
+    height: 35vmin;
+    border-radius: 10px;
+    background: #ececed;
+    overflow-y: scroll;
+    resize: none;
+}
+    .txt_area:empty:before {
+        content: attr(data-placeholder);
+        color: gray
+    }
+.post_btn{
+    border-radius:30px;
+    background:var(--BG2_purple-);
+    color:white;
+    padding:3vmin;
+    margin:5vmin auto;
+    margin-bottom:2vmin;
+    width:40vmin;
+    text-align:center;
+}
+.exit{
+    position:absolute;
+    width:7vmin;
+    top:3vmin;
+    right:4vmin;
+}
+@media (min-width: 1000px) {
+    .background,.popup{
+        max-width: 600px;
+        margin: auto;
+    }
+    .post_review{
+        margin:12vmin auto;
+    }
+    .top {
+        max-width: 600px;
+        margin: auto;
+        margin-top:62px;
+    }
+    .user{
+        width: 100px;
+        height: 100px;
+    }
+    .list_container {
+        margin-top: 34vmin;
+    }
+    .txt_area{
+        margin:0 10%;
+    }
+    .post_btn {
+        padding: 2vmin;
+        margin: 5vmin auto;
+        margin-bottom: 1vmin;
+        width: 35vmin; 
+    }
+}
